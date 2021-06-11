@@ -71,7 +71,7 @@ class MyUserManager(BaseUserManager):
     def create_superuser(self, email, username, password):
         user = self.model(
             email=self.normalize_email(email),
-            username=username,
+            username=username, 
             first_name='first_name',
             last_name='last_name',
             type_of_user='type_of_user',
