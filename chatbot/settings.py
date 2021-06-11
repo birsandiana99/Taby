@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from django.conf.urls.static import static
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-y!m($07k$_vmggm-6i3mxd76i#f*4)1w3*b(*^xv#5vfu25n4v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['taby-bt.herokuapp.com']
+ALLOWED_HOSTS = ['taby-bt.herokuapp.com','127.0.0.1','localhost']
 
 
 # Application definition
@@ -133,11 +133,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[
-    os.path(BASE_DIR,'build/static')
+    os.path.join(BASE_DIR,"build/static")
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE =  'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
