@@ -1,0 +1,100 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, it's good to see you",
+        "Hi there, how are you?",
+        "Hi, I'm glad you want to talk. Tell me about you"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye", "I have to go"],
+      "responses": [
+        "See you later, take care!",
+        "Bye! Have a nice day!",
+        "Bye! Talk to you again soon!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot!"],
+      "responses": ["Happy to help!", "Any time! I'm here to help!", "My pleasure!"]
+    },
+    {
+      "tag": "sad",
+      "patterns": [
+        "I'm feeling down today",
+        "I'm sad",
+        "I feel like crying",
+        "I'm not ok",
+        "I feel down",
+        "I'm feeling down today"
+      ],
+      "responses": [
+        "Can you think of anything that may have caused this emotion?",
+        "I'm sorry to hear that. Let's talk it out! Can you think of any reason for this sadness?",
+        "I'm here for you if you want to talk about it"
+      ]
+    },
+    {
+      "tag": "depressed",
+      "patterns": [
+        "I don't feel like doing anything",
+        "I feel empty",
+        "I feel like crying",
+        "I don't wanna do it anymore",
+        "Nothing will ever make me happy"
+      ],
+      "responses": [
+        "Can you think of anything that may have caused this emotion?",
+        "I'm sorry to hear that. Let's talk it out! Can you think of any reason for this sadness?",
+        "I'm here for you if you want to talk about it"
+      ]
+    },
+    {
+      "tag": "powerless",
+      "patterns": [
+        "I feel powerless"
+      ],
+      "responses": [
+        "Powerless"
+      ]
+    },
+    {
+      "tag": "Anxious",
+      "patterns": [
+        "I am scared",
+        "I feel unsafe",
+        "I feel anxious",
+        "I'm anxious",
+        "I feel panicked"
+      ],
+      "responses": [
+        "Take a few deep breaths. Can you think of anything that may have caused this emotion?",
+        "I am here for you and I want to know how I can help"
+      ]
+    },
+    {
+      "tag": "Angry",
+      "patterns": [
+        "I am angry",
+        "I feel frustrated"
+      ],
+      "responses": [
+        "Take a few deep breaths. Can you think of anything that may have caused this emotion?",
+        "I am here for you and I want to know how I can help"
+      ]
+    }
+  ]
+}
