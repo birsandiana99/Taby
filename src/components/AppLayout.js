@@ -19,7 +19,7 @@ const Layout = (props) => {
     }
     return (
        
-        <Container maxWidth="md"> 
+        <Container width="100%"> 
                   {/* {localStorage.user_type==="therapist" ?
             (
               

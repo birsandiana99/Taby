@@ -59,7 +59,7 @@ class Login extends Component {
         </label>
         <br />
         <label>
-          Username:
+          Age:
           <input type="text" name="age"
            value={this.state.credentials.age}
            onChange={this.inputChanged}/>
