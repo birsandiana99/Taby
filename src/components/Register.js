@@ -21,7 +21,7 @@ class Login extends Component {
       }
       console.log(this.state.credentials["type_of_user"]);
       this.setState({type_of_user:'therapist'});
-    fetch('http://127.0.0.1:8000/api/users/', {
+    fetch('https://taby-bt.herokuapp.com/api/users/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.credentials)

@@ -13,7 +13,7 @@ class Login extends Component {
 
   login = event => {
     // console.log(this.state.credentials);
-    fetch('http://127.0.0.1:8000/api/auth/', {
+    fetch('https://taby-bt.herokuapp.com/api/auth/', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state.credentials)
