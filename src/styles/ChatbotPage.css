@@ -1,0 +1,27 @@
+#chatt{
+    height: 70vh;
+    width: 130vh;
+    background: #4DA8DA;
+    /* margin: 10%; */
+    margin-left: 15%;
+    box-shadow: 0px 0px 24px -4px #000;
+    border-radius: 3px;
+}
+
+.messagesContainer{
+    height: 62vh !important;
+    
+}
+
+#messagesContainer{
+    padding: 10px 30px 0px 30px !important;
+}
+
+#chatt input{
+    margin-left: 50px !important;
+}
+
+#chat > .inputSendContainer{
+    margin-top:20px;
+    height: 50px !important;
+}

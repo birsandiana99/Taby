@@ -1,8 +1,12 @@
+@import url("./styles/HomePage.css");
+@import url("./styles/Navbar.css");
+@import url("./styles/LoginRegister.css");
+@import url("./styles/ChatbotPage.css");
+@import url("./styles/Quotes.css");
+
 .App {
   text-align: center;
-  background-color: red;
   width: 100%;
-
 }
 
 .App-logo {

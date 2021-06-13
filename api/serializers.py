@@ -1,6 +1,6 @@
 # make jsons
 from rest_framework import serializers
-from .models import Messages, Room, MyUser, UserTherapist, ChatMessage
+from .models import Messages, Quotes, Room, MyUser, UserTherapist, ChatMessage
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -43,3 +43,13 @@ class ChatMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatMessage
         fields = ('author_id','recipient_id', 'date_sent', 'text')
+
+class UserTherapistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserTherapist
+        fields = ('start_date','user_id', 'therapist_id')
+
+class QuotesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quotes
+        fields = ('author_id', 'quote_text', 'domain', 'date_added', 'nr_likes')

@@ -1,14 +1,13 @@
-import { React, Component } from "react";
+import React, { Component } from "react";
+import { render } from "react-dom";
 import UnauthorizedPage from "./UnauthorizedPage";
 import $ from "jquery";
-
-export default class Message extends Component {
+export default class ChatbotPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       chat: [],
       msg: "",
-      therapist: 0,
     };
   }
 
@@ -18,57 +17,46 @@ export default class Message extends Component {
     // console.log(this.state.chat)
   };
   handleSend = () => {
-    if (this.state.msg !== "") {
-      $.get(
-        "http://localhost:8000/api/therapist?user_id=" + localStorage.user_id
-      )
-        .then((res) => {
-          this.setState({therapist: res["id"]});
-          console.log("RES:::::",this.state.therapist);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      console.log("DFDFSDFSFDSFSDFDSF", this.state.therapist);
-      $.post("http://localhost:8000/api/chat_messages", {
-        author_id: localStorage.user_id,
-        text: this.state.msg,
-        recipient_id: this.state.therapist,
+    if (this.state.msg != "") {
+      $.get("http://localhost:8000/api/chatbot", {
+        msg: this.state.msg,
+        user: localStorage.user_id,
       })
         .then((res) => {
+          if (
+            res != "I do not understand..." &&
+            localStorage.getItem("user_id")
+          ) {
+            $.post("http://localhost:8000/api/messages", {
+              user_id: localStorage.user_id,
+              message: this.state.msg,
+              msg_date: Date.now(),
+            })
+              .then((res) => {})
+              .catch((err) => {
+                console.log(err);
+              });
+          }
           let ch = this.state.chat;
           ch.push({ from: "our", msag: this.state.msg });
-          this.setState({msg: ""});
-          this.forceUpdate();
+          ch.push({ from: "cb", msag: res });
+          this.setState({ chat: ch, msg: "" });
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-  };
 
-  async componentDidMount() {
-    const user_id = localStorage.getItem("user_id");
-    const urlMessagesForUser =
-      "http://127.0.0.1:8000/api/chats_for_user?user_id=" + user_id;
-    const responseMessagesForUser = await fetch(urlMessagesForUser);
-    const dataMessagesForUser = await responseMessagesForUser.json();
-    let dataMessages = [];
-    let ch = this.state.chat;
-    // ch.push({from:'our',msag:this.state.msg});
-    // ch.push({from:'cb',msag:res});
-    for (const val of dataMessagesForUser) {
-      console.log("VAL::::", val);
-      if (val["author_id"] === user_id) {
-        ch.push({ from: "our", msag: val["text"] });
-      } else {
-        ch.push({ from: "cb", msag: val["text"] });
-      }
       this.forceUpdate();
     }
-  }
+    let interval = window.setInterval(function () {
+      var elem = document.getElementById("chatt");
+      elem.scrollTop = elem.scrollHeight;
+      window.clearInterval(interval);
+    }, 5000);
+  };
+
   render() {
-    if (this.props.user_id === "") {
+    if (this.props.user_id == "") {
       console.log("not logged in");
       return (
         <div>

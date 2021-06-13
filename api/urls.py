@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import Logout, RoomView, CreateRoomView, MyChatbotView, UserView, UserViewSet, CustomObtainAuthToken, getCountersForChart, getMessagesForUser, ChatbotMessages, getMessagePolarity, getTagsForDashboard, getTherapistForUser
+from .views import Logout, QuotesView, RoomView, CreateRoomView, MyChatbotView, UserView, UserViewSet, CustomObtainAuthToken, getCountersForChart, getMessagesForUser, ChatbotMessages, getMessagePolarity, getTagsForDashboard, getTherapistForUser
 from rest_framework import routers
 from django.urls import path, include
-from .views import getUsersForTherapist, ChatMessages, ChatMessagesView, getMessagesForUser
+from .views import getUsersForTherapist, ChatMessages, ChatMessagesView, getMessagesForUser, UserTherapistView
 
 # router = routers.DefaultRouter()
 # router.register('')
@@ -37,5 +37,7 @@ urlpatterns = [
     path('chats_for_user', getMessagesForUser.as_view()),
     path('therapist', getTherapistForUser.as_view()),
     path('tag', getTagsForDashboard.as_view()),
+    path('user_therapist', UserTherapistView.as_view()),
+    path('quotes', QuotesView.as_view()),
     # path('user',GetUserByToken.as_view())
 ]

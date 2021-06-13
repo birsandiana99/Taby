@@ -1,0 +1,15 @@
+.add-quote-icon{
+    width: 100px !important;
+    height: 100px !important;
+    color: blanchedalmond;
+    font-size: 50px;
+    margin-right: 20px;
+}
+.icon-container{
+    text-align: left;
+    display: flex;
+}
+
+.icon-container > div{
+    top:20px;
+}

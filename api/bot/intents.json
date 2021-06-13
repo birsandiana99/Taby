@@ -13,6 +13,7 @@
       "responses": [
         "Hey :-)",
         "Hello, it's good to see you",
+        "Hello, I'm Taby! I'm here to help! How are you?",
         "Hi there, how are you?",
         "Hi, I'm glad you want to talk. Tell me about you"
       ]
@@ -22,6 +23,7 @@
       "patterns": ["Bye", "See you later", "Goodbye", "I have to go"],
       "responses": [
         "See you later, take care!",
+        "It was good talking to you! Bye!",
         "Bye! Have a nice day!",
         "Bye! Talk to you again soon!"
       ]
@@ -29,11 +31,17 @@
     {
       "tag": "thanks",
       "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot!"],
-      "responses": ["Happy to help!", "Any time! I'm here to help!", "My pleasure!"]
+      "responses": [
+        "Happy to help!",
+        "Anytime! I'm here to help!",
+        "My pleasure!"
+      ]
     },
     {
       "tag": "sad",
       "patterns": [
+        "I feel sad",
+        "Im sad",
         "I'm feeling down today",
         "I'm sad",
         "I feel like crying",
@@ -64,12 +72,8 @@
     },
     {
       "tag": "powerless",
-      "patterns": [
-        "I feel powerless"
-      ],
-      "responses": [
-        "Powerless"
-      ]
+      "patterns": ["I feel powerless"],
+      "responses": ["Powerless"]
     },
     {
       "tag": "Anxious",
@@ -87,10 +91,7 @@
     },
     {
       "tag": "Angry",
-      "patterns": [
-        "I am angry",
-        "I feel frustrated"
-      ],
+      "patterns": ["I am angry", "I feel frustrated"],
       "responses": [
         "Take a few deep breaths. Can you think of anything that may have caused this emotion?",
         "I am here for you and I want to know how I can help"

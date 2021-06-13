@@ -1,0 +1,15 @@
+.navbar > div{
+    background-color: #007CC7;   
+    color: white;
+}
+
+.navbar > div > div{
+    padding-left: 8%;
+    
+}
+
+
+.navbar-item span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:20px;
+}

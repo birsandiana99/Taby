@@ -125,3 +125,12 @@ class ChatMessage(models.Model):
     date_sent = models.DateTimeField(verbose_name='date_sent', auto_now=True)
     text = models.TextField(default="")
     # read = models.BooleanField(default=False)
+
+
+class Quotes(models.Model):
+    author_id = models.IntegerField(default=-1)
+    quote_text = models.TextField(max_length=100)
+    domain = models.TextField(default="none")
+    date_added = models.DateTimeField(auto_now=True)
+    nr_likes = models.IntegerField(default=0)
+    

@@ -2,8 +2,8 @@ from django.db.models.fields import DateTimeField
 from django.shortcuts import render
 from django.http import HttpResponse, request
 from rest_framework import generics, status
-from .serializers import ChatMessageSerializer, MessagesSerializer, RoomSerializer, CreateRoomSerializer, UserSerializer
-from .models import ChatMessage, Room, MyUser, UserTherapist
+from .serializers import ChatMessageSerializer, MessagesSerializer, QuotesSerializer, RoomSerializer, CreateRoomSerializer, UserSerializer, UserTherapistSerializer
+from .models import ChatMessage, Quotes, Room, MyUser, UserTherapist
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .bot.generate_response import generate_response
@@ -147,11 +147,13 @@ class getTherapistForUser(generics.ListAPIView):
         uid = self.request.GET.get('user_id')
         therapist_id = UserTherapist.objects.filter(user_id=uid)
         # TODO
-        therapist = MyUser.objects.filter(id =therapist_id[0].therapist_id)
-        print("%%%%",therapist[0])
-        serializer = UserSerializer(therapist[0])
-        return Response(serializer.data)
-
+        if(therapist_id):
+            therapist = MyUser.objects.filter(id =therapist_id[0].therapist_id)
+            print("%%%%",therapist[0])
+            serializer = UserSerializer(therapist[0])
+            return Response(serializer.data)
+        else:
+            return Response(404)
 class ChatMessages(APIView):
     serializer_class = ChatMessageSerializer
     def post(self, request, format = None):
@@ -164,7 +166,6 @@ class ChatMessages(APIView):
             chat = ChatMessage(author_id = author_id, recipient_id = recipient_id, date_sent = date_sent,text=text)
             chat.save()
             return Response(ChatMessageSerializer(chat).data, status=status.HTTP_201_CREATED)
-
 
 class ChatMessagesView(generics.ListAPIView):
     queryset = ChatMessage.objects.all()
@@ -181,3 +182,25 @@ class getMessagesForUser(generics.ListAPIView):
         print("$#########,",msg_list)
         serializer = ChatMessageSerializer(msg_list, many=True)
         return Response(serializer.data)
+
+
+class UserTherapistView(APIView):
+    # queryset = UserTherapist.objects.all()
+    serializer_class = UserTherapistSerializer
+    def post(self, request, format = None):
+        user_id = self.request.POST.get('user_id')
+        therapist_id =  self.request.POST.get('therapist_id')
+        user_therapist = UserTherapist(user_id = user_id, therapist_id = therapist_id)
+        user_therapist.save()
+        return Response(ChatMessageSerializer(user_therapist).data, status=status.HTTP_201_CREATED)
+    def get(self, request):
+        uid = self.request.GET.get('user_id')
+        messages = UserTherapist.objects.filter(user_id=uid)
+        msg_list = list(messages)
+        serializer = UserTherapistSerializer(msg_list, many=True)
+        return Response(serializer.data)
+
+
+class QuotesView(generics.ListCreateAPIView):
+    queryset = Quotes.objects.all()
+    serializer_class = QuotesSerializer
