@@ -39,13 +39,14 @@ export default class Messages extends Component {
   async componentDidMount() {
     const user_id = localStorage.getItem("user_id");
     const urlMessagesForUser =
-      "http://127.0.0.1:8000/api/chats_for_user?user_id=" + user_id;
+      "http://127.0.0.1:8000/api/chats";
     const responseMessagesForUser = await fetch(urlMessagesForUser);
     const dataMessagesForUser = await responseMessagesForUser.json();
     let dataMessages = [];
     let ch = this.state.chat;
     console.log("PROPS:", this.props);
     this.setState({ user2: this.props.match.params.user2 });
+    console.log("USER2",this.state.user2);
     for (const val of dataMessagesForUser) {
       console.log("VAL::::", val);
       if (
@@ -71,7 +72,7 @@ export default class Messages extends Component {
       );
     }
     return (
-      <div id="chatt">
+      <div id="chatt" className="therapist-chat">
         <div
           id="messagesContainer"
           style={{ overflowY: "auto", height: "63vh" }}
@@ -79,46 +80,23 @@ export default class Messages extends Component {
           {this.state.chat.map((msg) => {
             if (msg.from == "cb") {
               return (
-                <div
-                  style={{
-                    flexWrap: "wrap",
-                    fontSize: "25px",
-                    fontFamily: "cursive",
-                    marginBottom: "10px",
-                    borderRadius: "100px",
-                    marginRight: "500px",
-                    padding: "30px",
-                    paddingBottom: "20px",
-                    width: "30%",
-                    backgroundColor: "black",
-                    color: "white",
-                    float: "left",
-                    display: "block",
-                  }}
+                <div >
+                  <div id="user-avatar"> </div>
+                <div className="chat-message-bot"
                 >
+                  
                   {msg.msag}{" "}
+                </div>
                 </div>
               );
             } else {
               return (
-                <div
-                  style={{
-                    flexWrap: "wrap",
-                    fontSize: "25px",
-                    fontFamily: "cursive",
-                    marginBottom: "10px",
-                    borderRadius: "100px",
-                    marginLeft: "500px",
-                    padding: "30px",
-                    paddingBottom: "20px",
-                    width: "30%",
-                    backgroundColor: "orange",
-                    float: "right",
-                    display: "block",
-                    color: "whitesmoke",
-                  }}
-                >
-                  {msg.msag}
+                <div>
+                
+                <div className="user-message">
+                  {msg.msag} 
+                </div>
+                <div id="therapist-avatar"> </div>
                 </div>
               );
             }

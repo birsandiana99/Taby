@@ -10,7 +10,7 @@ export default class DonutChart extends Component {
   };
 
   async componentDidMount() {
-    const user_id = localStorage.getItem("user_id");
+    const user_id = this.props.user_id;
     const urlMessagesForUser =
       "http://127.0.0.1:8000/api/messages?user_id=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
@@ -25,7 +25,7 @@ export default class DonutChart extends Component {
     const responsePolarity = await fetch(urlPolarity);
     const dataPolarity = await responsePolarity.json();
 
-    console.log("POLARITY:::: ", dataPolarity);
+    // console.log("POLARITY:::: ", dataPolarity);
     let compound = dataPolarity["compound"];
     delete dataPolarity["compound"];
     let labels = Object.keys(dataPolarity);
@@ -70,10 +70,19 @@ export default class DonutChart extends Component {
         ) : (
           <div>
             <Doughnut
-              width={300}
-              height={300}
-              options={{ maintainAspectRatio: false }}
+             style={{width:"250px", height:"auto"}}
               data={this.state.data}
+              options={ {
+                plugins: {
+                  title: {
+                    display: true,
+                    text: this.props.title, 
+                    font: {
+                      weight: "10px"
+                    }
+                }
+                }
+            }}
             ></Doughnut>
           </div>
         )}

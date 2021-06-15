@@ -1,8 +1,6 @@
 import { Card, Button } from "@material-ui/core";
 import React, { Component } from "react";
 
-
-
 export default class TherapistPage extends Component {
   state = {
     loading: true,
@@ -13,6 +11,11 @@ export default class TherapistPage extends Component {
     raw_data: [],
   };
 
+
+  getMyDate= (mydate) => {
+    let date = new Date(mydate);
+    return date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear() + ' ' +date.getHours()+":"+date.getMinutes();
+  } 
   async componentDidMount() {
     const user_id = localStorage.getItem("user_id");
     const urlPatientsForTherapist =
@@ -33,6 +36,10 @@ export default class TherapistPage extends Component {
 
     console.log(datesForJoining);
     console.log("==========", raw_data);
+
+    let date = new Date(raw_data[0]["last_login"]);
+    console.log("AICI",date.getMonth());
+
     console.log(dataPatientIDs);
     this.setState({
       raw_data: raw_data,
@@ -64,9 +71,14 @@ export default class TherapistPage extends Component {
                   <br />
                   <label> Age: {item["age"]}</label>
                   <br />
-                  <label> Last active: {item["last_login"]}</label>
+                  <label> Last active: {
+                        this.getMyDate(item["last_login"])
+                       
+                      
+                  
+                 }</label>
                   <br />
-                  <a style={{color:"white"}} href={`/patient/${item["id"]}`}>
+                  <a style={{color:"white"}}  onClick={()=>localStorage.setItem("patient_id",item["id"])} href={`/patient/${item["id"]}`}>
                     {" "}
                     Go to dashboard for {item["username"]}
                   </a>

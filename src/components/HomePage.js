@@ -45,7 +45,7 @@ export default class HomePage extends Component {
     console.log(this.props.token);
     return (
       <div className="home-page-container">
-        
+        HOME
       </div>
     );
   }

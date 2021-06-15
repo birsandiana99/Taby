@@ -6,6 +6,7 @@
 @import url("./styles/TherapistPage.css");
 @import url("./styles/ClientPage.css");
 @import url("./styles/DashboardPage.css");
+@import url("./styles/Messages.css");
 
 .App {
   text-align: center;

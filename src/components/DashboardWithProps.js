@@ -11,7 +11,7 @@ export default class DashboardWithProps extends Component {
     this.state = {
       loading: true,
       hasData: false,
-      user_id: localStorage.getItem("user_id")
+      user_id: this.props.user_id
     };
   }
 
@@ -54,27 +54,15 @@ export default class DashboardWithProps extends Component {
       }
     }
 
-    console.log("RRRR",recentMessages);
     const today = new Date();
-    // all_dates=[14,15,16,18]
-    console.log("XXXX",all_dates.sort().slice(2));
-    // let messages_1 = [];
-    // let messages_2 = [];
     let rec_mes = [];
     for (const some_date of all_dates.slice(2)) {
-    //   if (some_date === today.getDate() - 2) {
         if(recentMessages[some_date]){
             rec_mes = [...rec_mes, recentMessages[some_date]];
-        // messages_1 = recentMessages[some_date];
-    //   }
-    //   if (some_date === today.getDate() - 3) {
-        // messages_2 = recentMessages[some_date];
-    //   }
         }
     }
     let messages_1 = rec_mes[0];
     let messages_2 = rec_mes[1];
-    console.log("@@@@@",messages_1,"@@@",messages_2);
     if(messages_1){
     let tags_1 = [];
     let tagsDict_1 = {};
@@ -138,7 +126,6 @@ export default class DashboardWithProps extends Component {
     let tags_2 = [];
     let tagsDict_2 = {};
     for (const value of messages_2) {
-      console.log("AIIIICI", value)
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
@@ -241,7 +228,7 @@ export default class DashboardWithProps extends Component {
 
       datasets: [
         {
-          label: "# of Votes",
+          label: "Feelings intensity for today",
           data: Object.values(dataCounterForMessages).slice(0, 5),
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
@@ -326,6 +313,7 @@ export default class DashboardWithProps extends Component {
         options: options
       });
     }
+    console.log("DATA HERE", datax);
   }
   render() {
     return (
@@ -347,29 +335,25 @@ export default class DashboardWithProps extends Component {
                   data={this.state.data2}
                   options={ {
                     plugins: {
-                        legend: {
-                            labels: {
-                                font: {
-                                    size: 14
-                                }
-                            }
+                      title: {
+                        display: true,
+                        text: "Today's displayed emotions",
+                        font: {
+                          weight: "10px"
                         }
+                    }
                     }
                 }}
                 /></div>
                 <div className="chartContainer" style={{width:"250px", height:"auto"}} >
-                    <DonutChart/> </div>
+                    <DonutChart user_id={this.state.user_id} title="Today's emotion polarity chart"/> </div>
                 <br />
                 
               </div>
 
               <div style={{marginTop:"20px"}}> 
-                <label>
-                  Here is the data for the last two days of conversation with
-                  Taby:
-                </label> 
-                <div style={{display:"flex"}}>
-                <div className="chartContainer" style={{width:"500px", height:"auto"}} >
+                <div>
+                <div className="chartContainer" style={{width:"500px", height:"auto",marginRight:"20px"}} >
                     <Bar data={this.state.data_1} style={{width:"300px", height:"auto"}} /> </div>
                     <div className="chartContainer" style={{width:"500px", height:"auto"}} >
                     <Bar data={this.state.data_2} style={{width:"250px", height:"auto"}}/> </div>

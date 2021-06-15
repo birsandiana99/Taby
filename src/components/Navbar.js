@@ -34,7 +34,7 @@ const navLinksPatient = [
   { title: `Home`, path: `/home` },
   { title: `Dashboard`, path: `/dash` },
   { title: `Taby`, path: `/chat` },
-  { title: `Messages`, path: `/chats` },
+  { title: `Messages`, path: `/messages` },
   { title: `Profile`, path: `/user_profile` },
   { title: `Log out`, path: `/` },
 ];
@@ -56,7 +56,7 @@ const Navbar = () => {
     localStorage.removeItem("user_id");
     localStorage.removeItem("user_type");
     setAuth((auth) => 1);
-    history.push("/login");
+    // history.push("/login");
   };
   let navLinks = [];
   if (localStorage.user_type === "therapist") {
@@ -85,7 +85,7 @@ const Navbar = () => {
   return (
     <div position="static" className="navbar">
       <div style={{backgroundColor: "transparent", display:"flex"}} >
-        <div className="taby-logo"></div>
+        <div className="taby-logo" style={{cursor: "pointer"}} onClick={()=>{history.push("/home")}}></div>
         <div className="slogan">To a Better You</div>
         <Container maxWidth="md" className={classes.navbarDisplayFlex}>
           {localStorage.token ? (
@@ -95,16 +95,31 @@ const Navbar = () => {
               className={classes.navDisplayFlex}
             >
               <CreateLinks />
-              {/* <ListItem button onClick={logOut}> Log out</ListItem> */}
             </List>
           ) : (
-            <div>
+            <div style={{display:"flex", paddingLeft:"20%", paddingTop:"20px"}}>
               <a href="/login" style={{textDecoration:"none"}} className={classes.linkText}>
+        <ListItem
+          button
+          className="navbar-item login-navbar-item"
+        >
+          <ListItemText primary="login" />
+        </ListItem></a>
+
+        <a href="/register" style={{textDecoration:"none"}} className={classes.linkText}>
         <ListItem
           button
           className="navbar-item"
         >
-          <ListItemText primary="login" />
+          <ListItemText primary="register" />
+        </ListItem></a>
+
+        <a href="/chat" style={{textDecoration:"none"}} className={classes.linkText}>
+        <ListItem
+          button
+          className="navbar-item"
+        >
+          <ListItemText primary="Try taby" />
         </ListItem></a>
             </div>
           )}

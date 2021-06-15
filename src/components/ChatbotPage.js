@@ -73,46 +73,23 @@ export default class ChatbotPage extends Component {
           {this.state.chat.map((msg) => {
             if (msg.from == "cb") {
               return (
-                <div
-                  style={{
-                    flexWrap: "wrap",
-                    fontSize: "25px",
-                    fontFamily: "cursive",
-                    marginBottom: "10px",
-                    borderRadius: "100px",
-                    marginRight: "500px",
-                    padding: "30px",
-                    paddingBottom: "20px",
-                    width: "30%",
-                    backgroundColor: "black",
-                    color: "white",
-                    float: "left",
-                    display: "block",
-                  }}
+                <div >
+                  <div id="chatbot-avatar"> </div>
+                <div className="chat-message-bot"
                 >
+                  
                   {msg.msag}{" "}
+                </div>
                 </div>
               );
             } else {
               return (
-                <div
-                  style={{
-                    flexWrap: "wrap",
-                    fontSize: "25px",
-                    fontFamily: "cursive",
-                    marginBottom: "10px",
-                    borderRadius: "100px",
-                    marginLeft: "500px",
-                    padding: "30px",
-                    paddingBottom: "20px",
-                    width: "30%",
-                    backgroundColor: "orange",
-                    float: "right",
-                    display: "block",
-                    color: "whitesmoke",
-                  }}
-                >
-                  {msg.msag}
+                <div>
+                
+                <div className="user-message">
+                  {msg.msag} 
+                </div>
+                <div id="user-avatar"> </div>
                 </div>
               );
             }

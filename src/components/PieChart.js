@@ -9,7 +9,7 @@ export default class DashPage extends Component {
   };
 
   async componentDidMount() {
-    const user_id = localStorage.getItem("user_id");
+    const user_id = this.props.user_id;
     const urlMessagesForUser =
       "http://127.0.0.1:8000/api/messages?user_id=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
@@ -55,14 +55,14 @@ export default class DashPage extends Component {
         },
       ],
     };
-    console.log(dataMessages);
-    console.log(dataCounterForMessages);
+    // console.log(dataMessages);
+    // console.log(dataCounterForMessages);
 
     const urlPolarity =
       "http://127.0.0.1:8000/api/polarity?obj=" + dataMessages;
     const responsePolarity = await fetch(urlPolarity);
     const dataPolarity = await responsePolarity.json();
-    console.log("POLARITY:::: ", dataPolarity);
+    // console.log("POLARITY:::: ", dataPolarity);
 
     this.setState({
       dataMessagesForUser: dataMessages,
@@ -82,7 +82,17 @@ export default class DashPage extends Component {
               width={300}
               height={300}
               data={this.state.data}
-              options={{ maintainAspectRatio: false }}
+              options={ {
+                plugins: {
+                  title: {
+                    display: true,
+                    text: this.props.title, 
+                    font: {
+                      weight: "10px"
+                    }
+                }
+                }
+            }}
             ></Pie>
           </div>
         )}

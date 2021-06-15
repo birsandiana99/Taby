@@ -27,11 +27,14 @@ code {
   bottom: 0;
 }
 
+.footer label{
+  font-size: 14px;
+}
 
 .taby-logo{
   background-image: url('./images/default-monochrome-white.svg');
   background-repeat: no-repeat;
-  height: 80px;
+  height: 63px;
   width: auto;
   margin-left: 10px !important;
   margin-top: 10px;
@@ -39,9 +42,12 @@ code {
 
 
 .slogan{    
-    min-width: 106px;
-    margin: 0 !important;
-    padding: 0 !important;
-    margin-left: -245px !important;
-    margin-top: 78px !important;
+  min-width: 106px;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-left: -257px !important;
+  margin-top: 66px !important;
+  font-size: 15px;
+  font-style: italic;
 }
+

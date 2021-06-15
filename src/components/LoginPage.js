@@ -16,18 +16,6 @@ import { useHistory } from "react-router-dom";
 import { display } from "@material-ui/system";
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Taby
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,6 +51,16 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     border: "1px solid white",
+  },
+  material_tf: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "rgba(0, 0, 0, 0.23)"  // default
+      },
+      "&.Mui-focused fieldset": {
+        border: "2px solid red"             // focus
+      }
+    }
   }
 }));
 
@@ -72,7 +70,7 @@ export default function SignInSide(props) {
   const [credentials, setCredentials] = useState({});
 
   function login(event) {
-    // console.log("CREDS:",credentials);
+    console.log("CREDS:",credentials);
     fetch("http://127.0.0.1:8000/api/auth/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -93,6 +91,7 @@ export default function SignInSide(props) {
   }
 
   function inputChanged(event) {
+    console.log(event.target.value);
     const cred = credentials;
     cred[event.target.name] = event.target.value;
     setCredentials(cred);
@@ -103,66 +102,34 @@ export default function SignInSide(props) {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          <Avatar className={classes.avatar} style={{background:"#703141"}}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate style={{borderColor: "white"}}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              labelClassName="mylabel"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              placeholderStyle={{color:"red"}}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
+          <form className={classes.form + classes.material_tf} noValidate style={{borderColor: "white"}}>
+            <div style={{marginTop: "50px"}}>
+              <input name="username" onChange={inputChanged} className="username t-form-field" id="username" />
+            </div>
+            <div> <input onChange={inputChanged} name="password" type="password" className="password t-form-field" id="password" /> </div>
             <Button
-              // type="submit"
-              fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
               onClick={login}
+              style={{width:"50%", fontSize:"14px", background:"#703141"}}
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/register" variant="body2">
+            <Grid container >
+              <Grid item style={{width:"100%"}}>
+                <Link href="/register" style={{ width:"100%"}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright />
             </Box>
           </form>
         </div>

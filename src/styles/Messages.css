@@ -1,0 +1,36 @@
+#therapist-avatar{
+    background-image: url('../images/therapist.png');
+    background-color:white;
+    width: 48px;
+    height: 50px;
+    /* background-position: 0px; */
+    background-size: 49px;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+    margin-left: -10px !important;
+    margin-bottom:35px;
+}
+
+
+.therapist-chat #user-avatar{
+    background-image: url('../images/user.png');
+    background-color:white;
+    width: 48px;
+    height: 50px;
+    /* background-position: 0px; */
+    background-size: 49px;
+    background-repeat: no-repeat;
+    border-radius: 40px;
+    margin-left: -10px !important;
+    margin-bottom:35px;
+}
+
+.therapist-chat #therapist-avatar {background-image: url('../images/therapist.png');
+width: 48px;
+height: 50px;
+background-position: 0px; 
+ background-size: 49px;
+background-repeat: no-repeat;
+border-radius: 40px;
+margin-left: 881px !important; 
+margin-bottom:35px;}

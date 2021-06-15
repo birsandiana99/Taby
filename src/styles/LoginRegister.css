@@ -10,23 +10,52 @@
 
 .login-container > div {
     background:transparent;
+    margin-left:35%;
+    height: 70vh;
+    max-width: 50vh;
 }
 
 .login-container a{
     color:white;
+    text-align: center;
 }
 
 .login-container input::placeholder{
     background: white;
 }
 
+.login-container h1{
+color:white;
+}
+
+.login-container a{
+   font-size:12px;
+}
+
+
 .username ::placeholder {color: pink;
 }
 
-.mylabel{
-    color:red;
-}
 
 .makeStyles-paper-6{
     margin: 38px 32px;
+}
+
+.t-form-field
+{
+    background: transparent;
+    width: 250px;
+    height:30px;
+    border:none;
+    border-bottom: 1px solid #28223E;
+    margin-bottom:20px;
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    color: #27203D;
+}
+
+.t-form-field:focus{
+    outline: none;
+    border-color: #596192;
 }

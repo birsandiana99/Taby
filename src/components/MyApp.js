@@ -14,6 +14,7 @@ import { createBrowserHistory } from "history";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import DashboardWithProps from "./DashboardWithProps";
+import HomePage from "./HomePage";
 
 const history = createBrowserHistory();
 export default class MyApp extends Component {
@@ -44,7 +45,7 @@ export default class MyApp extends Component {
               <Route
                 exact
                 path="/home"
-                component={() => <LoginPage userLogin={this.userLogin} />}
+                component={() => <HomePage userLogin={this.userLogin} />}
               />
               <Route
                 exact
@@ -66,7 +67,7 @@ export default class MyApp extends Component {
                 path="/register"
                 component={() => <RegisterPage />}
               />
-              <Route exact path="/dash" component={() => <ClientPage />} />
+              <Route exact path="/dash" component={() => <ClientPage user_id={this.state.user_id}/>} />
               <Route
                 exact
                 path="/user_profile"
@@ -82,7 +83,7 @@ export default class MyApp extends Component {
                 path="/messages"
                 component={() => <ChatMessages />}
               />
-              <Route path="/patient/:user_id" component={DashboardWithProps} />
+              <Route path="/patient/:user_id" component={ClientPage} />
               <Route path="/chats/:user2" component={Messages} />
               <Route path="/quotes" component={Quotes} />
               {/* <Redirect from="*" to="/home" /> */}
