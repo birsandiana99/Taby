@@ -1,0 +1,24 @@
+.patientListContainer{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top:40px;
+    align-items: center;
+
+}
+
+.patientListContainer .patientCard{
+    border-radius: 75px;
+    color: white;
+    background-color: DodgerBlue;
+    padding:15px;
+    font-family: "Arial";
+    margin-right:20px;
+    width: 40%;
+    display: inline-block;
+    margin: auto;
+}
+
+.patientCard{
+    margin-bottom:50px !important;
+}

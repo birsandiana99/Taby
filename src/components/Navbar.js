@@ -83,8 +83,10 @@ const Navbar = () => {
     ));
   };
   return (
-    <AppBar position="static" className="navbar">
-      <Toolbar>
+    <div position="static" className="navbar">
+      <div style={{backgroundColor: "transparent", display:"flex"}} >
+        <div className="taby-logo"></div>
+        <div className="slogan">To a Better You</div>
         <Container maxWidth="md" className={classes.navbarDisplayFlex}>
           {localStorage.token ? (
             <List
@@ -107,8 +109,8 @@ const Navbar = () => {
             </div>
           )}
         </Container>
-      </Toolbar>
-    </AppBar>
+      </div>
+    </div>
   );
 };
 export default Navbar;

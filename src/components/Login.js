@@ -22,6 +22,7 @@ class Login extends Component {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user_id", data.user_id);
         localStorage.setItem("user_type", data.type_of_user);
+        localStorage.setItem("user",data);
         this.props.userLogin(data.token, data.user_id, data.type_of_user);
       }, this.props.history.push("/user_profile"))
       .catch((error) => console.error(error));

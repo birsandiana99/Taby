@@ -97,7 +97,13 @@ class ChatbotMessages(generics.ListCreateAPIView):
         return Messages.objects.filter(user_id=uid)
     def post(self, request, format = None):
         user_id = self.request.POST.get('user_id')
-        msg_date = datetime.now()
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", int(self.request.POST.get("msg_date")))
+        if self.request.POST.get("msg_date"):
+            timestamp_date = int(self.request.POST.get("msg_date"))
+            msg_date = datetime.fromtimestamp(timestamp_date/1000)
+            
+        else:
+            msg_date = datetime.now()
         message = self.request.POST.get('message')
         print("AAAAAA",message)
         msg = Messages(user_id = user_id, msg_date = msg_date, message = message)

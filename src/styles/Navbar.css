@@ -1,15 +1,29 @@
 .navbar > div{
-    background-color: #007CC7;   
+    background-color:transparent;   
     color: white;
 }
 
 .navbar > div > div{
-    padding-left: 8%;
+    padding-left: 26%;
+    margin-right: 0;
+    padding-right: 0;
     
 }
 
 
 .navbar-item span{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size:20px;
+    font-size:13px;
+}
+
+.navbar .MuiAppBar-colorPrimary{
+    color: transparent !important;
+}
+
+.navbar-item:hover{
+    background-color: #222341;
+}
+
+.navbar-item:hover span{
+    color: #DF6E42;
 }

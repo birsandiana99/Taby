@@ -3,6 +3,9 @@
 @import url("./styles/LoginRegister.css");
 @import url("./styles/ChatbotPage.css");
 @import url("./styles/Quotes.css");
+@import url("./styles/TherapistPage.css");
+@import url("./styles/ClientPage.css");
+@import url("./styles/DashboardPage.css");
 
 .App {
   text-align: center;

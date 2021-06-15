@@ -3,3 +3,30 @@
     color:white;
 } */
 
+.login-container > div:nth-child(2){
+    background: transparent;
+    color:white;
+}
+
+.login-container > div {
+    background:transparent;
+}
+
+.login-container a{
+    color:white;
+}
+
+.login-container input::placeholder{
+    background: white;
+}
+
+.username ::placeholder {color: pink;
+}
+
+.mylabel{
+    color:red;
+}
+
+.makeStyles-paper-6{
+    margin: 38px 32px;
+}

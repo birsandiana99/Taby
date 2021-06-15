@@ -133,4 +133,3 @@ class Quotes(models.Model):
     domain = models.TextField(default="none")
     date_added = models.DateTimeField(auto_now=True)
     nr_likes = models.IntegerField(default=0)
-    

@@ -3,7 +3,7 @@
     {
       "tag": "greeting",
       "patterns": [
-        "Hi",
+        "Hi!",
         "Hey",
         "How are you",
         "Is anyone there?",
@@ -60,6 +60,7 @@
       "patterns": [
         "I don't feel like doing anything",
         "I feel empty",
+        "I'm depressed",
         "I feel like crying",
         "I don't wanna do it anymore",
         "Nothing will ever make me happy"
@@ -72,8 +73,8 @@
     },
     {
       "tag": "powerless",
-      "patterns": ["I feel powerless"],
-      "responses": ["Powerless"]
+      "patterns": ["I feel powerless", "I don't feel like I'm strong enough", "I'm not strong enough for this"], 
+      "responses": ["There is power in you! You can beat this feeling!", "What makes you think that you are powerless"]
     },
     {
       "tag": "Anxious",
@@ -82,7 +83,11 @@
         "I feel unsafe",
         "I feel anxious",
         "I'm anxious",
-        "I feel panicked"
+        "I feel panicked",
+        "I just had a panick attack", 
+        "I can't breathe",
+        "My heart is beating very fast and I'm scared",
+        "I can't breathe properly"
       ],
       "responses": [
         "Take a few deep breaths. Can you think of anything that may have caused this emotion?",
@@ -94,7 +99,126 @@
       "patterns": ["I am angry", "I feel frustrated"],
       "responses": [
         "Take a few deep breaths. Can you think of anything that may have caused this emotion?",
-        "I am here for you and I want to know how I can help"
+        "I am here for you and I want to know how I can help",
+        "What are you angry at?"
+      ]
+    },
+    {
+      "tag": "Suicidal",
+      "patterns": [
+        "I want to die", 
+        "The world woul be a better place without me", "I don't want to live anymore",
+        "What's the point of living anymore"
+      ],
+      "responses": [
+        "Why do you say this?",
+        "Take a few deep breaths and try to calm down. If this is only getting worse with time consider calling someone close to you"
+      ]
+    },
+    {
+      "tag": "Lonely",
+      "patterns": 
+      [
+        "I feel lonely", 
+        "I have no one",
+        "lonely",
+        "I feel so alone",
+        "I am always alone",
+        "I don't have anyone",
+        "alone"
+      ],
+      "responses": [
+        "I am here for you!",
+        "But here we are talking to each other",
+        "It is normal to feel lonely from time to time, remember that you are not alone"
+      ]
+    },
+    {
+      "tag": "unwanted",
+      "patterns": 
+      [
+        "No one loves me.", 
+        "No one cares about me",
+        "No one will ever love me",
+        "I don't have anyone"
+      ],
+      "responses": [
+        "You are a wonderful person! I care about you very much",
+        "You have to love yourself first before expecting others to do so",
+        "I understand you are going through a rough patch, but these will all pass with time.",
+        "I understand your feelings, but you have to know you more than enough for yourself at the moment!"
+      ]
+    },
+    {
+      "tag": "happy",
+      "patterns": 
+      [
+        "I feel good today",
+        "I had a wonderful time",
+        "I am happy",
+        "I am ecstatic for this",
+        "I feel very good recently",
+        "I have been feeling good",
+        "I am great"
+      ],
+      "responses": [
+        "I am glad you're feeling good! You deserve happiness!",
+        "That's great news! Why would you say you're feeling like this now?",
+        "I'm happy for you! You should try to remember moments like this whenever you feel low",
+        "Wo-hoo! I'm happy you're happy"
+      ]
+    },
+    {
+      "tag": "bored",
+      "patterns": 
+      [
+        "I am bored",
+        "I don't feel like doing nothing today",
+        "My life is boring..",
+        "I live a boring life",
+        "I am so bored"
+      ],
+      "responses": [
+        "Did you try to do something you enjoy? Or maybe just meditate for a few moments",
+        "Could you try to identify the source of this boredom for me?",
+        "Maybe you just need some moments to relax and enjoy the boredom. We don't always get a pause moment in out busy lives"
+      ]
+    },
+    {
+      "tag": "family_problems",
+      "patterns": 
+      [
+        "I got into a fight with my mother",
+        "I got into a fight with my brother",
+        "I got into a fight with my father",
+        "I got into a fight with my sister",
+        "I got into a fight with my mother",
+        "My mother just yelled at me",
+        "My father just yelled at me",
+        "My mother yelled at me",
+        "My father just yelled at me",
+        "I feel like my parent don't listen to me"
+      ],
+      "responses": [
+        "I know it is hard to get into a fight with your family. Do you want to talk about it?",
+        "I am sorry you're going through this. Feel free to tell me about it."
+      ]
+    },
+    {
+      "tag": "lazy",
+      "patterns": 
+      [
+        "I sat home all day and watched TV",
+        "I haven't done nothing all day",
+        "I didn't do anything today",
+        "I didn't get any work done today",
+        "I procastinated a lot today",
+        "I have been procastinating"
+      ],
+      "responses": [
+        "If you don't have any urgent business that need to be attended you can feel free to take a day off every now and then, it's ok",
+        "Can you think of why you chose not to do anything today?",
+        "Was it because of some emotions you felt?"
       ]
     }
   ]

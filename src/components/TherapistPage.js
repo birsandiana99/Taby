@@ -1,14 +1,7 @@
 import { Card, Button } from "@material-ui/core";
 import React, { Component } from "react";
 
-const PatientCardStyle = {
-  color: "white",
-  backgroundColor: "DodgerBlue",
-  padding: "10px",
-  fontFamily: "Arial",
-  paddingBottom: "14px",
-  marginBottom: "14px",
-};
+
 
 export default class TherapistPage extends Component {
   state = {
@@ -57,10 +50,12 @@ export default class TherapistPage extends Component {
           <div>loading...</div>
         ) : (
           <div>
+            <h2 style={{color:"white"}}>Here is your client list</h2>
+            <div className="patientListContainer">
             {this.state.raw_data.map((item) => (
-              <div key={item["id"]}>
+              <div className="patientCard" key={item["id"]}>
                 {/* <button onClick={localStorage.setItem(patient_to_view,item)}> */}
-                <Card className="patientCard" style={PatientCardStyle}>
+                <div >
                   <label> Username: {item["username"]}</label>
                   <br />
                   <label> First Name: {item["first_name"]}</label>
@@ -71,21 +66,20 @@ export default class TherapistPage extends Component {
                   <br />
                   <label> Last active: {item["last_login"]}</label>
                   <br />
-                  <a href={`/patient/${item["id"]}`}>
+                  <a style={{color:"white"}} href={`/patient/${item["id"]}`}>
                     {" "}
                     Go to dashboard for {item["username"]}
                   </a>
                   <br />
-                  <a href={`/chats/${item["id"]}`}>
+                  <a style={{color:"white"}} href={`/chats/${item["id"]}`}>
                     {" "}
                     Chat with {item["username"]}
                   </a>
-                  {/* </button> */}
                   {/* <ChartWithProps user_id={item}/> */}
                   {/* {this.state.datesForJoining[item]} */}
-                </Card>
+                </div>
               </div>
-            ))}
+            ))}</div>
           </div>
         )}
       </div>

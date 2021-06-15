@@ -2,7 +2,7 @@ import { React, Component } from "react";
 
 export default class UserProfile extends Component {
   state = {
-    user: localStorage.getItem("user_type"),
+    user: {},
   };
 
   async componentDidMount() {
@@ -11,7 +11,8 @@ export default class UserProfile extends Component {
       "http://127.0.0.1:8000/api/users?id=" + user_id;
     const resp = await fetch(urlUsers);
     const data = await resp.json();
-    console.log(data);
+    this.setState({user: data});
+    console.log("RRRRRRRRRRR",data);
   }
 
   

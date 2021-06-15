@@ -57,6 +57,22 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  textField: {
+    // border: "1px solid white",
+    background: "grey",
+    borderRadius: "3px",
+    width:"250px",
+    margin: "5px"
+  },
+  selectField: {
+    // border: "1px solid white",
+    background: "grey",
+    borderRadius: "3px",
+    color: "white",
+    textAlign:"left",
+    width:"250px",
+    margin: "5px"
+  }
 }));
 
 export default function SignInSide(props) {
@@ -99,16 +115,15 @@ export default function SignInSide(props) {
   }
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component="main" className={"login-container " +classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Register
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -121,6 +136,10 @@ export default function SignInSide(props) {
               name="first_name"
               autoFocus
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <TextField
               variant="outlined"
@@ -132,6 +151,10 @@ export default function SignInSide(props) {
               name="last_name"
               autoFocus
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <TextField
               variant="outlined"
@@ -143,6 +166,10 @@ export default function SignInSide(props) {
               name="age"
               autoFocus
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <Select
               variant="outlined"
@@ -150,10 +177,13 @@ export default function SignInSide(props) {
               required
               fullWidth
               id="type_of_user"
+              placeholder="Select type of user"
               label="User Type"
               name="type_of_user"
               onChange={inputChanged}
-              defaultValue="patient"
+              marginTop="16px"
+              defaultValue="client"
+              className={classes.selectField}
             >
               <MenuItem value="therapist">Therapist</MenuItem>
               <MenuItem value="client">Patient</MenuItem>
@@ -168,6 +198,10 @@ export default function SignInSide(props) {
               name="username"
               autoFocus
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <TextField
               variant="outlined"
@@ -180,6 +214,10 @@ export default function SignInSide(props) {
               type="email"
               autoFocus
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <TextField
               variant="outlined"
@@ -191,6 +229,10 @@ export default function SignInSide(props) {
               type="password"
               id="password"
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <TextField
               variant="outlined"
@@ -202,6 +244,10 @@ export default function SignInSide(props) {
               type="password"
               id="password2"
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <Button
               // type="submit"

@@ -1,0 +1,11 @@
+.chartContainer{
+    width: 500px;
+    height: auto;
+    margin: auto;
+    display: inline-block;
+    margin:auto;
+}
+
+.dashboardTab ul[aria-selected="true"]{
+    background-color: red;
+}

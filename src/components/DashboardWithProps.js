@@ -1,37 +1,40 @@
 import { TodayTwoTone } from "@material-ui/icons";
 import React, { Component } from "react";
+import Chart from "chartjs";
 import { Bar, Pie, PolarArea, Radar } from "react-chartjs-2";
-
-export default class ProgressBar extends Component {
+import { defaults } from 'react-chartjs-2';
+import DonutChart from './DonutChart';
+defaults.color='white';
+export default class DashboardWithProps extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       hasData: false,
+      user_id: localStorage.getItem("user_id")
     };
   }
 
   async componentDidMount() {
-    // const user_id = this.props.user_id;
-    // const msg_list =  JSON.parse(localStorage.getItem("user_messages"));
-    const user_id = localStorage.getItem("user_id");
-    console.log("AHAAAAAAAAAAAAAAAAAAAAAAA");
+   
+    let user_id;
+    if(this.props.user_id){
+     user_id = this.props.user_id;
+    }
+    else{
+         user_id=this.props.match.params.user_id;
+    }
     const urlMessagesForUser =
       "http://127.0.0.1:8000/api/messages?user_id=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
     const dataMessagesForUser = await responseMessagesForUser.json();
-    console.log("RAW", dataMessagesForUser);
     const recentMessages = [];
     let msg_list = [];
     let all_dates = [];
     for (const val of dataMessagesForUser) {
-      // console.log("DATEEEEEEEEEEEEEE: ", Date(val["msg_data"]));
-      // console.log("DATEEEEEEEEEEEEEE222222: ", new Date());
       const today = new Date();
       const msg_date = new Date(val["msg_date"]);
       if (msg_date != null) {
-        console.log("HERE", msg_date.getDate());
-
         if (!all_dates.includes(msg_date.getDate())) {
           recentMessages[msg_date.getDate()] = [val["message"]];
           all_dates = [...all_dates, msg_date.getDate()];
@@ -50,46 +53,36 @@ export default class ProgressBar extends Component {
         msg_list = [...msg_list, val["message"]];
       }
     }
-    console.log("UUUUUUUUUU", all_dates);
-    console.log("UUUUUUUUUU2", recentMessages);
-    // let dates = Object.keys(recentMessages);
-    // const today = new Date();
-    // for(const some_date of all_dates){
-    //   const date = new Date(some_date);
-    //     if(date.getDate() === today.getDate())
-    //     {
-    //         console.log("!!!!!!!!!!!!!!!!!!!",recentMessages[date]);
-    //     }
-    // }
 
-    let dates = Object.keys(all_dates);
+    console.log("RRRR",recentMessages);
     const today = new Date();
-    let messages_1 = [];
-    let messages_2 = [];
-    let label1 = today.getDate() - 2;
-    let label2 = today.getDate() - 3;
-    for (const some_date of all_dates) {
-      if (some_date === today.getDate() - 2) {
-        messages_1 = recentMessages[some_date];
-        // console.log("!!!!!!!!!!!!!!!!!!!",recentMessages[some_date]);
-      }
-      if (some_date === today.getDate() - 3) {
-        messages_2 = recentMessages[some_date];
-        // console.log("!!!!!!!!!!!!!!!!!!!",recentMessages[some_date]);
-      }
+    // all_dates=[14,15,16,18]
+    console.log("XXXX",all_dates.sort().slice(2));
+    // let messages_1 = [];
+    // let messages_2 = [];
+    let rec_mes = [];
+    for (const some_date of all_dates.slice(2)) {
+    //   if (some_date === today.getDate() - 2) {
+        if(recentMessages[some_date]){
+            rec_mes = [...rec_mes, recentMessages[some_date]];
+        // messages_1 = recentMessages[some_date];
+    //   }
+    //   if (some_date === today.getDate() - 3) {
+        // messages_2 = recentMessages[some_date];
+    //   }
+        }
     }
-    console.log("messages1:", messages_1);
-    console.log("messages2:", messages_2);
-
+    let messages_1 = rec_mes[0];
+    let messages_2 = rec_mes[1];
+    console.log("@@@@@",messages_1,"@@@",messages_2);
+    if(messages_1){
     let tags_1 = [];
     let tagsDict_1 = {};
-    // console.log("=========",msg_list);
     for (const value of messages_1) {
-      console.log("111111111", value);
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
-      if (dataTagForUser != "" && dataTagForUser != "greeting") {
+      if (dataTagForUser !== "" && dataTagForUser !== "greeting") {
         if (tagsDict_1[dataTagForUser]) {
           tagsDict_1[dataTagForUser] = tagsDict_1[dataTagForUser] + 1;
         } else {
@@ -99,8 +92,6 @@ export default class ProgressBar extends Component {
       }
     }
 
-    console.log("TAGSDICT1", tagsDict_1);
-    console.log("TODAY", today, today.getMonth());
     let labels_1 = Object.keys(tagsDict_1);
     const datax_1 = {
       labels: labels_1.slice(0, 5),
@@ -108,7 +99,7 @@ export default class ProgressBar extends Component {
         {
           label:
             "Feelings intensity for " +
-            (today.getDate() - 2) +
+            all_dates[0]+
             "." +
             (today.getMonth() + 1),
           data: Object.values(tagsDict_1).slice(0, 5),
@@ -128,16 +119,26 @@ export default class ProgressBar extends Component {
             "rgba(153, 102, 255, 1)",
             "rgba(255, 159, 64, 1)",
           ],
+          color:"white",
           borderWidth: 1,
         },
       ],
     };
 
+    
+
+    if(labels_1.length>0){
+      this.setState({ data_1: datax_1});
+        }
+    
+    }
+
+
+    if(messages_2){
     let tags_2 = [];
     let tagsDict_2 = {};
-    // console.log("=========",msg_list);
     for (const value of messages_2) {
-      // console.log(val);
+      console.log("AIIIICI", value)
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
@@ -151,7 +152,6 @@ export default class ProgressBar extends Component {
       }
     }
 
-    console.log("TAGSDICT2", tagsDict_2);
     let labels_2 = Object.keys(tagsDict_2);
     const datax_2 = {
       labels: labels_2.slice(0, 5),
@@ -159,7 +159,7 @@ export default class ProgressBar extends Component {
         {
           label:
             "Feelings intensity for " +
-            (today.getDate() - 3) +
+            all_dates[1]+
             "." +
             (today.getMonth() + 1),
           data: Object.values(tagsDict_2).slice(0, 5),
@@ -182,17 +182,39 @@ export default class ProgressBar extends Component {
           borderWidth: 1,
         },
       ],
+      options:{
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+           fontColor: "white",
+        },
+        scales: {
+           xAxes: [{
+              ticks: {
+                 fontColor: "white",
+              }
+           }],
+           yAxes: [{
+              ticks: {
+                 fontColor: "white",
+                 beginAtZero: true,
+                 maxTicksLimit: 5,
+                 stepSize: Math.ceil(250 / 5),
+                 max: 250
+              }
+           }]
+        }
+     }
     };
-
-    console.log(datax_1);
-    this.setState({ data_1: datax_1, data_2: datax_2 });
+    if(labels_2.length>0){
+    this.setState({ data_2: datax_2});
+      }
+    }       
 
     let messages = [];
     let tags = [];
     let tagsDict = {};
-    // console.log("=========",msg_list);
     for (const value of msg_list) {
-      // console.log(val);
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
@@ -211,13 +233,12 @@ export default class ProgressBar extends Component {
       "http://127.0.0.1:8000/api/counter?obj=" + messages;
     const responseCounterForMessages = await fetch(urlCounterForMessages);
     const dataCounterForMessages = await responseCounterForMessages.json();
-    console.log(dataCounterForMessages);
 
     let labelsx = Object.keys(dataCounterForMessages);
-    // console.log(labelsx);
 
     let datax2 = {
       labels: labelsx.slice(0, 5),
+
       datasets: [
         {
           label: "# of Votes",
@@ -228,6 +249,7 @@ export default class ProgressBar extends Component {
             "rgba(255, 206, 86, 0.2)",
             "rgba(75, 192, 192, 0.2)",
             "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
           ],
           borderColor: [
             "rgba(255, 99, 132, 1)",
@@ -235,14 +257,21 @@ export default class ProgressBar extends Component {
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
           ],
           borderWidth: 1,
         },
       ],
+      options: {
+        legend: {
+          labels: {
+            fontColor: 'f00'
+          },
+        }}
     };
 
     let labels = Object.keys(tagsDict);
-
+    
     const datax = {
       labels: labels.slice(0, 5),
       datasets: [
@@ -268,12 +297,21 @@ export default class ProgressBar extends Component {
           borderWidth: 1,
         },
       ],
+      options: {
+      legend: {
+        labels: {
+          fontColor: 'f00'
+        },
+      }}
+    };
+    const options = {
+      legend: {
+        fontColor: "white",
+     },
     };
     if (
-      labels.length == 0 &&
-      labels_1.length == 0 &&
-      labels_2.length == 0 &&
-      labelsx == 0
+      labels.length === 0 &&
+      labelsx === 0
     ) {
       this.setState({
         hasData: false,
@@ -285,6 +323,7 @@ export default class ProgressBar extends Component {
         data2: datax2,
         loading: false,
         hasData: true,
+        options: options
       });
     }
   }
@@ -296,27 +335,46 @@ export default class ProgressBar extends Component {
         ) : (
           <div>
             {this.state.hasData ? (
+               
               <div>
               <div style={{width:"800px", display:"flex", textAlign:"center", width:"100%"}}>
+                <div id="myChart"/>
                  <div className="chartContainer" style={{width:"500px", height:"auto"}} >
-                <Bar data={this.state.data} />
+                <Bar data={this.state.data} style={{width:"200px", height:"auto"}} options={this.state.options}/>
                 </div>
-                <div className="chartContainer" style={{width:"300px", height:"auto"}}>
+                <div className="chartContainer" style={{width:"250px", height:"auto"}}>
                 <Pie 
                   data={this.state.data2}
+                  options={ {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }}
                 /></div>
+                <div className="chartContainer" style={{width:"250px", height:"auto"}} >
+                    <DonutChart/> </div>
                 <br />
                 
               </div>
 
-              <div style={{display:"flex",marginTop:"80px"}}> 
-                {/* <label>
+              <div style={{marginTop:"20px"}}> 
+                <label>
                   Here is the data for the last two days of conversation with
                   Taby:
-                </label> */}
-                {/* <div> */}
-                {/* <Bar data={this.state.data_1} /> </div>
-                <Bar data={this.state.data_2} /> */}
+                </label> 
+                <div style={{display:"flex"}}>
+                <div className="chartContainer" style={{width:"500px", height:"auto"}} >
+                    <Bar data={this.state.data_1} style={{width:"300px", height:"auto"}} /> </div>
+                    <div className="chartContainer" style={{width:"500px", height:"auto"}} >
+                    <Bar data={this.state.data_2} style={{width:"250px", height:"auto"}}/> </div>
+                    
+                  </div>
               </div>
               </div>
             ) : (

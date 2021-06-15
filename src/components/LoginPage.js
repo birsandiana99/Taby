@@ -56,10 +56,14 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    borderColor: "white"
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  textField: {
+    border: "1px solid white",
+  }
 }));
 
 export default function SignInSide(props) {
@@ -95,9 +99,8 @@ export default function SignInSide(props) {
   }
 
   return (
-    <Grid container component="main" className={"contaiter "+classes.root} style={{background:"inherit"}}>
+    <Grid container component="main" className={"login-container contaiter "+classes.root} style={{background:"inherit"}}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -106,7 +109,7 @@ export default function SignInSide(props) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate style={{borderColor: "white"}}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -114,10 +117,15 @@ export default function SignInSide(props) {
               fullWidth
               id="username"
               label="Username"
+              labelClassName="mylabel"
               name="username"
               autoComplete="username"
               autoFocus
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <TextField
               variant="outlined"
@@ -126,10 +134,15 @@ export default function SignInSide(props) {
               fullWidth
               name="password"
               label="Password"
+              placeholderStyle={{color:"red"}}
               type="password"
               id="password"
               autoComplete="current-password"
               onChange={inputChanged}
+              InputLabelProps={{
+                style: { color: '#fff'}, 
+             }}
+             className={classes.textField}
             />
             <Button
               // type="submit"
