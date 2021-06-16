@@ -13,19 +13,20 @@ export default class ClientPage extends Component {
     super(props);
     this.state = {
       therapist: 0,
-      user_id: localStorage.getItem("patient_id")
+      user_id: localStorage.getItem("user_id")
   };
 }
 
   async componentDidMount() {
-      const {match: {params}} = this.props;
-      let id = params.user_id;
-      console.log("ID ", id);
+      // const {match: {params}} = this.props;
+      // let id = params.user_id;
+      // console.log("ID ", id);
+      console.log("PROPS:",this.props);
       if(this.props.user_id){
         this.setState({user_id : this.props.user_id});
        }
        else{
-        this.setState({user_id: params.user_id});
+        this.setState({user_id: this.props.match.params.user_id});
      }
        console.log("------------",this.state.user_id);
 

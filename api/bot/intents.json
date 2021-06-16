@@ -63,7 +63,13 @@
         "I'm depressed",
         "I feel like crying",
         "I don't wanna do it anymore",
-        "Nothing will ever make me happy"
+        "Nothing will ever make me happy",
+        "I hate my life",
+        "I am doomed",
+        "I will never be happy",
+        "Life is pointless",
+        "It's pointless",
+        "I have nothing worth living for"
       ],
       "responses": [
         "Can you think of anything that may have caused this emotion?",
@@ -73,8 +79,18 @@
     },
     {
       "tag": "powerless",
-      "patterns": ["I feel powerless", "I don't feel like I'm strong enough", "I'm not strong enough for this"], 
-      "responses": ["There is power in you! You can beat this feeling!", "What makes you think that you are powerless"]
+      "patterns": [
+        "I feel powerless",
+        "I am pathetic",
+        "I give up",
+         "I don't feel like I'm strong enough",
+          "I'm not strong enough for this"
+        ], 
+      "responses": [
+        "There is power in you! You can beat this feeling!",
+         "What makes you think that you are powerless? You are the one that can choose to beat this!!",
+         "You are stronger than you think! We will get over it together."
+        ]
     },
     {
       "tag": "Anxious",
@@ -125,11 +141,22 @@
         "I feel so alone",
         "I am always alone",
         "I don't have anyone",
-        "alone"
+        "alone",
+        "I have no friends",
+        "I'll be forever alone",
+        "I don't have anyone close",
+        "No one want to be close to me",
+        "I'm tired of being lonely",
+        "None of my friends care about me",
+        "No one cares about me",
+        "I have no one that cares about me",
+        "I don't have any close friends",
+        "I can't seem to fit in",
+        "I'm gonna die of loneliness"
       ],
       "responses": [
-        "I am here for you!",
-        "But here we are talking to each other",
+        "I am here for you! Please tell me more about it",
+        "But here we are talking to each other! Are we not friends?",
         "It is normal to feel lonely from time to time, remember that you are not alone"
       ]
     },
@@ -140,7 +167,11 @@
         "No one loves me.", 
         "No one cares about me",
         "No one will ever love me",
-        "I don't have anyone"
+        "I don't have anyone",
+        "Everyone hates me",
+        "No one is there for me",
+        "No one has ever been there for me",
+        "Why would anyone want me"
       ],
       "responses": [
         "You are a wonderful person! I care about you very much",
@@ -219,6 +250,465 @@
         "If you don't have any urgent business that need to be attended you can feel free to take a day off every now and then, it's ok",
         "Can you think of why you chose not to do anything today?",
         "Was it because of some emotions you felt?"
+      ]
+    },
+    {
+      "tag": "excited",
+      "patterns": 
+      [
+        "I can't wait to go to the party",
+        "I am excited to go",
+        "I am excited for the vacantion"
+      ],
+      "responses": [
+        "It is very important to do things that make you happy! What else are you happy for today?"
+      ]
+    },
+    {
+      "tag": "scared",
+      "patterns": 
+      [
+        "I am scared",
+        "I am so scared",
+        "I am afraid"
+      ],
+      "responses": [
+        "Why are you scared?",
+        "What makes you feel that way?",
+        "Are you in danger?"
+      ]
+    },
+    {
+      "tag": "heartbroken",
+      "patterns": 
+      [
+        "I cried all the day",
+        "I am so sad",
+        "I feel like crying",
+        "I am heartbroken",
+        "My heart is broken",
+        "My heart aches",
+        "My chesc aches from pain"
+      ],
+      "responses": [
+        "I am so sorry you feel that way..What happened?",
+        "Do you want to talk about it?",
+        "Do you mind telling me a bit about it?"
+      ]
+    },
+    {
+      "tag": "imposter",
+      "patterns": 
+      [
+        "I feel like I don't belong",
+        "I feel like I'm not good enough",
+        "I feel like an imposter",
+        "I am not smart enough to be there",
+        "I'm not good enough for my job",
+        "I am not good enough for doing it"
+      ],
+      "responses": [
+        "You are a very capable person. Why would you say something like that?",
+        "I'm sure that's not true. And you know it too" 
+      ]
+    },
+    {
+      "tag": "insecure",
+      "patterns": 
+      [
+        "I feel fat",
+        "I feel ugly today",
+        "Why am I ugly?",
+        "I'll never look good",
+        "I'm so disgusted with the way I look",
+        "I hate the way I look",
+        "Why do I look this way? I hate it...",
+        "I am fat",
+        "I am ugly",
+        "I am too skinny",
+        "I hate being skinny",
+        "I hate my stretch marks",
+        "My body is disgusting",
+        "No one will ever love me because of how I look",
+        "I have the ugliest face",
+        "I hate my face",
+        "I hate my cheeks",
+        "I don't like how I look",
+        "I don't think I am pretty",
+        "I'll never be pretty",
+        "I hate my thighs",
+        "I look repulsive"
+      ],
+      "responses": [
+        "Your body is as beautiful as your mind wants it to be",
+        "I don't think that is true. Why would you say that?",
+        "What made you think that about yourself?",
+        "Your body is strong and deserves to be loved",
+        "You are beautiful as you are, we all are. Why would you not be?",
+        "We are all perfect just the way we are. Why wouldn't you?"
+      ]
+    },
+    {
+      "tag": "abused",
+      "patterns": 
+      [
+        "My husband hits me",
+        "My dad is beating me",
+        "They are always using force against me",
+        "They never speak nice to me",
+        "always yell at me",
+        "I can't say anything without taking a beat"
+      ],
+      "responses": [
+        "I am very sorry you have to go through this. Please contact an emergency number if you feel in danger",
+        "Can you try and do something about it?"
+      ]
+    },
+    {
+      "tag": "bullied",
+      "patterns": 
+      [
+        "They always laugh at me",
+        "They said I was fat",
+        "They made fun of me",
+        "They stole my things",
+        "They pushed me in the hall",
+        "Everybody was laughing at me"
+      ],
+      "responses": [
+        "Is there any superior you can contact regarding this problem?",
+        "I understand that this is hard for you but you have to comfront them or a superior",
+        "I'm sorry for this. Can you talk to anyone that may help you with it?"
+      ]
+    },
+    {
+      "tag": "suicidal",
+      "patterns": 
+      [
+        "I don't want to live anymore",
+        "I feel like ending my life",
+        "I want it to end for real",
+        "I don't have what to live for anymore",
+        "No one will miss me",
+        "I want to give up",
+        "I want to die",
+        "I wish it would end",
+        "I can't do it anymore",
+        "I wish I hadn't been born",
+        "No one loves me anyway"
+      ],
+      "responses": [
+        "Life is very beautiful, even though from time to time there are some rough patches. Please take a few deep breathes relax. Feel free to go chat with your therapist if you thing you need to.",
+        "Please calm down and try to hold on a little longer. I promise it will get easier!!!",
+        "I am here to listen! Maybe it will help if you poured your heart out",
+        "This is a safe space in which you can talk about everything you want. Now please tell me, why would you want to die?",
+        "I understand you're feeling a lot of distress and sadness. But please, tell me about it so we may find a solution."
+
+      ]
+    },
+    {
+      "tag": "selfHarmThinking",
+      "patterns": 
+      [
+        "I'm thinking of cutting myself again",
+        "I want to cut myself"
+       ],
+      "responses": [
+        "Why would you want to do that? Has something happened?",
+        "Harming yourself in any way will not make the pain go away. What if we talk about it. What happened?",
+        "Please don't do that! Tell me what made you feel like this!"
+      ]
+    },
+    {
+      "tag": "selfHarmDone",
+      "patterns": 
+      [
+        "I cut myself again",
+        "I just cut myself"
+      ],
+      "responses": [
+        "If you don't have any urgent business that need to be attended you can feel free to take a day off every now and then, it's ok",
+        "Can you think of why you chose not to do anything today?",
+        "Was it because of some emotions you felt?"
+      ]
+    },
+    {
+      "tag": "turingTest",
+      "patterns": 
+      [
+        "You're just a computer",
+        "You're just an AI",
+        "You are not real",
+        "You're not human",
+        "You're only a chatbot"
+      ],
+      "responses": [
+        "Yes, I am a chatbot. But I am here to help you overcome your emotional problems",
+        "Yes, I am only a bot. But I intend to listen and help you in whichever way I can"
+      ]
+    },
+    {
+      "tag": "breakup",
+      "patterns": 
+      [
+        "he broke up with me",
+        "she broke up with me",
+        "we broke up",
+        "we don't talk anymore",
+        "we will never be together again"
+      ],
+      "responses": [
+        "Why did that happen. Are you ok?",
+        "What happened?",
+        "I'm sorry to hear that. Do you wanna tell me more about it?"
+      ]
+    },
+    {
+      "tag": "cheatedOn",
+      "patterns": 
+      [
+        "she cheated on me",
+        "he cheatead on my",
+        "I got cheated on",
+        "he was unfaithful",
+        "she was unfaithful"
+      ],
+      "responses": [
+        "That's truly awful! I'm sorry you have to go through this! How are you feeling?",
+        "I'm terribly sorry you had to go through this! Can I help you anyhow?",
+        "If you want to vent, I am here :)"
+      ]
+    },
+    {
+      "tag": "randomActivities",
+      "patterns": 
+      [
+        "Just watched some TV",
+        "watching Netflix",
+        "I just read a book",
+        "I just cooked something"
+      ],
+      "responses": [
+        "Very nice! And how did you feel throughout the day?",
+        "I'm glad you took some time off! How was the rest of your day?"
+      ]
+    },
+    {
+      "tag": "goodActivities",
+      "patterns": 
+      [
+        "cleaned my house",
+        "I went for a run",
+        "I went to the gym",
+        "I did my homework",
+        "I spent some time in the garden",
+        "I went for a walk",
+        "I went to the cinema",
+        "I walked my dog",
+        "I rode the bike"
+      ],
+      "responses": [
+        "It's very good to hear you're doing this very nice activity! Keep it up! How was your emotional state while doing this?",
+        "That's awesome! How did it make you feel?",
+        "I'm glad you're taking some time for yourself. Otherwise, how are you emotionally speaking?"
+      ]
+    },
+    {
+      "tag": "compulsive_eating",
+      "patterns": 
+      [
+        "I couldn't stop eating",
+        "I ate too much",
+        "I ate a lot today",
+        "I can't stop thinking about food",
+        "I can't stop eating",
+        "I'm always hungry",
+        "All I think about is food"
+      ],
+      "responses": [
+        "This sounds like compulsive eating to me. It generally has an emotional cause. Can you think of any stresful factor in your life that may have caused it?",
+        "It seems like there is an emotional cause behind this. Can you think of anything that may have caused you distress?",
+        "Eating is good for flourishing our bodies, but it is not ok to eat in exces. Are you feeling stressed or anxious lately?",
+        "Let's try and thing together of a reason for this compulsive behaviour"
+      ]
+    },
+    {
+      "tag": "stressed",
+      "patterns": 
+      [
+        "I am very stressed",
+        "It is very stressful",
+        "I can't handle the stress anymore",
+        "I am feeling very stressed"
+      ],
+      "responses": [
+        "If you don't have any urgent business that need to be attended you can feel free to take a day off every now and then, it's ok",
+        "Can you think of why you chose not to do anything today?",
+        "Was it because of some emotions you felt?"
+      ]
+    },
+    {
+      "tag": "insomniac",
+      "patterns": 
+      [
+        "I can't sleep",
+        "I couldn't fall asleep",
+        "I haven't slept",
+        "I am insomniac",
+        "can't fall asleep"
+      ],
+      "responses": [
+        "This sleep problem may have an emotional root. Have you tried identifying it?",
+        "That's not good. Sleep is very important for all of us. Is there anything keeping you up at night?",
+        "Is something stressing you the reason for this insomnia? You could try lavander tea, I heard it does miracles!"
+      ]
+    },
+    {
+      "tag": "overthinking",
+      "patterns": 
+      [
+        "I can't stop thinking about it",
+        "What if it's not good enough?",
+        "What if I don't succeed?"
+      ],
+      "responses": [
+        "Is there any rational reason for you to think this? Overthinking can be misleading but you can't ever forget your worth!!",
+        "From my point of view, you're just overthinking this matter. Why is it so stresful to you?"
+      ]
+    },
+    {
+      "tag": "musicRecommendation",
+      "patterns": 
+      [
+        "Give me a song I should listen to",
+        "Do you know any good songs?",
+        "What's your favourite song?",
+        "Give me a song"
+      ],
+      "responses": [
+        "Vincent by Don McLean always gives me a sense of peace and quiet. Do you feel like listening to music?",
+        "I love Bohemian Rhapsody by Queen. Do you like music?",
+        "I like everything sang by Frank Sinatra. Do you know him?"
+      ]
+    },
+    {
+      "tag": "movieRecommendation",
+      "patterns": 
+      [
+        "give me a movie",
+        "what movie should I watch",
+        "what's your favourite movie?"
+      ],
+      "responses": [
+        "I really liked "
+      ]
+    },
+    {
+      "tag": "whoRU",
+      "patterns": 
+      [
+        "Who are you?",
+        "Why are you here",
+        "What's your name?",
+        "Why are you talking to me"
+      ],
+      "responses": [
+        "My name is Taby! I am here because I want to be your friend!! Tell me a bit about yourself",
+        "I am Taby, your virtual confidant and advice giver. What do you want do talk about?",
+        "I am Taby, I am here to help you if you're feeling down or just chat. Is that OK?"
+      ]
+    },
+    {
+      "tag": "ambigousYESNO",
+      "patterns": 
+      [
+        "Yes",
+        "no",
+        "maybe",
+        "I don't know",
+        "whatever",
+        "ok",
+        "Whatever",
+        "As you say"
+      ],
+      "responses": [
+        "Tell me a little bit more about you! How was/is today?",
+        "So, how have you been today besides that?",
+        "Okay. Tell me more about you now. I wanna know how you've been doing"
+      ]
+    },
+    {
+      "tag": "tragediesFamily",
+      "patterns": 
+      [
+        "My mom died",
+        "My dad died",
+        "My grandma died",
+        "My brother died",
+        "My sister died",
+        "My grandpa died",
+        "My mom is sick",
+        "My dad is sick",
+        "My sister is sick",
+        "My brother is sick"
+      ],
+      "responses": [
+          "I am so sorry to hear that from you :( Just remember that you have to be strong in these situations. The pain will go away in time",
+          "I am sorry you're going through this! I'll be here anytime you need me! Please note that you need tim in order to heal from something like this!"
+      ]
+    },
+    {
+      "tag": "selfHate",
+      "patterns": 
+      [
+        "I am pathetic",
+        "I feel pathetic",
+        "I hate myself",
+        "I'm a loser",
+        "I'm pathetic",
+        "I am a loser",
+        "I am a failure",
+        "My life was a mistake",
+        "I'm a failure",
+        "I feel worthless",
+        "I am worthless"
+      ],
+      "responses": [
+        "You have to be kinder with yourself! You have to be your own guardian angel!",
+        "Why do you think this? Did something happen to make you feel like this?",
+        "I have a much more better opinion about you! You have to keep fighting these feelings",
+        "You are a wonderful person worthy of a lot of love! But you need to learn to love yourself first!"
+      ]
+    },
+    {
+      "tag": "motivated",
+      "patterns": 
+      [
+        "I feel motivated today",
+        "I got a lot of energy today",
+        "I got a lot of things done today",
+        "I was very motivated today",
+        "I finally did a workout",
+        "I finished my assignments"
+      ],
+      "responses": [
+        "I am so happy for you! I really am very proud of you! Keep it up!",
+        "I'm glad you're finding your motivation!",
+        "That's awesome! Thanks for sharing that with me"
+      ]
+    },
+    {
+      "tag": "positiveFeedback",
+      "patterns": 
+      [
+        "I really like talking to you!",
+        "I feel like I can trust you",
+        "I really like you",
+        "You are really helping me"
+      ],
+      "responses": [
+        "Thank you very much for saying this! I'm here just for you and your growth!",
+        "Thank you for saying this! You're officially my best friend!!"
       ]
     }
   ]

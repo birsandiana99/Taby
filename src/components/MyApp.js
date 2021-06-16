@@ -67,7 +67,7 @@ export default class MyApp extends Component {
                 path="/register"
                 component={() => <RegisterPage />}
               />
-              <Route exact path="/dash" component={() => <ClientPage user_id={this.state.user_id}/>} />
+              <Route exact path="/dash" component={() => <ClientPage user_id={localStorage.getItem("user_id")}/>} />
               <Route
                 exact
                 path="/user_profile"
