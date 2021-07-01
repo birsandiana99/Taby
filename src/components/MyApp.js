@@ -16,6 +16,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import DashboardWithProps from "./DashboardWithProps";
 import HomePage from "./HomePage";
 
+import swal from 'sweetalert';
+
 const history = createBrowserHistory();
 export default class MyApp extends Component {
   constructor(props) {
@@ -29,10 +31,16 @@ export default class MyApp extends Component {
   }
 
   userLogin = (token, user_id, type_of_user) => {
+    if(token!==undefined){
     this.setState({ token: token });
     this.setState({ user_id: user_id });
     this.setState({ type_of_user: type_of_user });
     localStorage.setItem("user_messages", []);
+    return 1;
+  }
+    else{
+      return 0;
+    }
     // console.log("token:: " , this.state.token);
   };
 

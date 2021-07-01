@@ -12,6 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import swal from "sweetalert";
 
 function Copyright() {
   return (
@@ -89,14 +90,40 @@ export default function SignInSide(props) {
   const [password2, setPassword2] = useState("");
 
   function register(event) {
-    // console.log("CREDS:",credentials);
-    if (password2 != credentials["password"]) {
-      console.log("NOOOOOOOOOOOOOOOO");
-    } else {
-      console.log("YESSSSSSSSSSSSS");
-    }
-    console.log(credentials["type_of_user"]);
+    
+    // console.log(credentials["type_of_user"]);
     // this.setState({type_of_user:'client'});
+
+    const fn = credentials["first_name"];
+    const ln = credentials["last_name"];
+    const email = credentials["email"];
+    const pw1 = credentials["password"];
+    const pw2 = credentials["password2"];
+    const age = credentials["age"];
+    const username = credentials["username"];
+
+
+    if(isNaN(age) || age<13 || age>99){
+      swal("Age must be a number between 13 and 99");
+    }
+    if ( pw1!==pw2) {
+      swal("Passwords don't match!");
+    }
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)){
+      swal("Email is not correct");
+    }
+    if(username === ''){
+      swal("Username must not be null");
+    }
+    if(fn === '' || ln === ''){
+      swal("Name must not be null");
+    }
+
+    
+
+
+
     fetch("http://127.0.0.1:8000/api/users/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -114,160 +141,79 @@ export default function SignInSide(props) {
     console.log(credentials);
   }
 
+  function getUserType(event){
+    console.log("SDDFSFS", event.target.value);
+    const cred = credentials;
+    cred["type_of_user"] = event.target.value;
+    setCredentials(cred);
+  }
+
+
   return (
-    <Grid container component="main" className={"login-container " +classes.root}>
+    <Grid container component="main" className={"register-container container "+classes.root} style={{background:"inherit"}}>
       <CssBaseline />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          <Avatar className={classes.avatar} style={{background:"#703141"}}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="first_name"
-              label="First Name"
-              name="first_name"
-              autoFocus
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="last_name"
-              label="Last Name"
-              name="last_name"
-              autoFocus
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="age"
-              label="Age"
-              name="age"
-              autoFocus
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <Select
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="type_of_user"
-              placeholder="Select type of user"
-              label="User Type"
-              name="type_of_user"
-              onChange={inputChanged}
-              marginTop="16px"
-              defaultValue="client"
-              className={classes.selectField}
-            >
-              <MenuItem value="therapist">Therapist</MenuItem>
-              <MenuItem value="client">Patient</MenuItem>
-            </Select>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoFocus
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              type="email"
-              autoFocus
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password2"
-              label="Confirm password"
-              type="password"
-              id="password2"
-              onChange={inputChanged}
-              InputLabelProps={{
-                style: { color: '#fff'}, 
-             }}
-             className={classes.textField}
-            />
+          <form className={classes.form + classes.material_tf} noValidate style={{borderColor: "white"}}>
+          <div style={{marginTop: "50px",display:"flex",flexDirection:"column"}}>
+              <select id="type_of_user" onChange={getUserType}>
+                <option value="client">Patient</option>
+                <option value="therapist">Therapist</option>
+              </select>
+            </div>
+          <div style={{display:"flex",flexDirection:"column"}}>
+              <label> First Name </label>
+              <input name="first_name" onChange={inputChanged}  className="first_name t-form-field" id="first_name" />
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <label> Last Name </label>
+              <input name="last_name" onChange={inputChanged}  className="last_name t-form-field" id="last_name" />
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <label> Username </label>
+              <input name="username" onChange={inputChanged}  className="username t-form-field" id="username" />
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <label> Age </label>
+              <input name="age" onChange={inputChanged}  className="age t-form-field" id="age" />
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <label> Email </label>
+              <input name="email" onChange={inputChanged}  className="email t-form-field" id="email" />
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <label> Password </label>
+              <input name="password" onChange={inputChanged}  className="password t-form-field" type="password" id="password" />
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <label> Confirm password </label>
+              <input name="password2" onChange={inputChanged}  className="password2 t-form-field" type="password" id="password2" />
+            </div>
+            
+            
             <Button
-              // type="submit"
-              fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
               onClick={register}
+              style={{width:"50%", fontSize:"14px", background:"#703141"}}
             >
-              Register
+              Sign Up
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  {"Already have an account? Log in"}
+            <Grid container >
+              <Grid item style={{width:"100%"}}>
+                <Link href="/login" style={{ width:"100%"}}>
+                  {"Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright />
             </Box>
           </form>
         </div>

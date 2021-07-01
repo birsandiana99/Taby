@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { display } from "@material-ui/system";
-
+import swal from "sweetalert";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -82,8 +82,14 @@ export default function SignInSide(props) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("user_id", data.user_id);
           localStorage.setItem("user_type", data.type_of_user);
-          props.userLogin(data.token, data.user_id, data.type_of_user);
-          history.push("/user_profile");
+          let k = props.userLogin(data.token, data.user_id, data.type_of_user);
+          if(k===1){
+            history.push("/user_profile");
+          }
+          else{
+            swal("Login unsuccessful! Please try again!");
+          }
+          
         }
         
       )

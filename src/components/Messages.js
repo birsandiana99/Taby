@@ -8,17 +8,17 @@ export default class Messages extends Component {
     this.state = {
       chat: [],
       msg: "",
-      user2: 0,
+      user_id: localStorage.getItem("user_id"),
+      user2: this.props.match.params.user2,
     };
   }
 
   handleChange = (e) => {
     console.log(e.target.value);
     this.setState({ msg: e.target.value });
-    // console.log(this.state.chat)
   };
   handleSend = () => {
-    if (this.state.msg != "") {
+    if (this.state.msg !== "") {
       $.post("http://127.0.0.1:8000/api/chat_messages", {
         author_id: localStorage.user_id,
         text: this.state.msg,
@@ -37,27 +37,27 @@ export default class Messages extends Component {
   };
 
   async componentDidMount() {
-    const user_id = localStorage.getItem("user_id");
+    console.log("PROPS:", this.props.match.params.user2);
+    console.log("USER222",this.state.user_id);
     const urlMessagesForUser =
-      "http://127.0.0.1:8000/api/chats";
+      "http://127.0.0.1:8000/api/chats_for_user?user="+this.state.user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
     const dataMessagesForUser = await responseMessagesForUser.json();
-    let dataMessages = [];
     let ch = this.state.chat;
-    console.log("PROPS:", this.props);
+    
     this.setState({ user2: this.props.match.params.user2 });
+    
     console.log("USER2",this.state.user2);
     for (const val of dataMessagesForUser) {
-      console.log("VAL::::", val);
-      if (
-        val["author_id"] == user_id &&
-        val["recipient_id"] == this.state.user2
-      ) {
+      console.log("now:",val)
+      console.log("VAL::::",  val["author_id"] ,  Number(this.state.user_id), val["author_id"] === Number(this.state.user_id));
+      if (val["author_id"] === Number(this.state.user_id)) {
+        console.log("USERID", val);
         ch.push({ from: "our", msag: val["text"] });
-      } else {
-        if (val["author_id"] == this.state.user2) {
-          ch.push({ from: "cb", msag: val["text"] });
-        }
+      }
+      else{
+        // console.log("therapist:::", val)
+        ch.push({ from: "cb", msag: val["text"] });
       }
       this.forceUpdate();
     }

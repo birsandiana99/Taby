@@ -3,38 +3,36 @@
     color:white;
 } */
 
-.login-container > div:nth-child(2){
+.login-container > div:nth-child(2), .register-container > div:nth-child(2){
     background: transparent;
     color:white;
 }
 
-.login-container > div {
+.login-container > div, .register-container > div {
     background:transparent;
     margin-left:35%;
     height: 70vh;
     max-width: 50vh;
 }
 
-.login-container a{
+.login-container a, .register-container a{
     color:white;
     text-align: center;
 }
 
-.login-container input::placeholder{
+.login-container input::placeholder, .register-container input::placeholder{
     background: white;
 }
 
-.login-container h1{
+.login-container h1, .register-container h1{
 color:white;
 }
 
-.login-container a{
+.login-container a, .register-container a{
    font-size:12px;
 }
 
 
-.username ::placeholder {color: pink;
-}
 
 
 .makeStyles-paper-6{
@@ -58,4 +56,69 @@ color:white;
 .t-form-field:focus{
     outline: none;
     border-color: #596192;
+}
+
+/* ::-webkit-input-placeholder { 
+  }
+
+  .username{
+      background: transparent;
+  }
+  .username::placeholder{
+      background: grey;
+  } */
+
+
+.placeholder_username{
+    margin-top: -40px;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.register-container > div{
+    height: 110vh;
+}
+
+.register-container{
+    margin-bottom: 30px;
+}
+.register-container label{
+    font-size: 12px;
+    color:white;
+}
+
+.register-container .t-form-field
+{
+    background: transparent;
+    width: 250px;
+    height:30px;
+    border:none;
+    border-bottom: 1px solid white;
+    margin-bottom:20px;
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    color: white;
+}
+
+.register-container .footer{
+    display: none;
+}
+
+
+.register-container #type_of_user{
+    margin-left:90px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 95px;
+    outline:none;
+    margin-bottom: 20px;
+
+}
+
+select option{
+    background:#6C4D6D;
 }

@@ -3,7 +3,7 @@ from .views import Logout, QuotesView, RoomView, CreateRoomView, MyChatbotView, 
 from rest_framework import routers
 from django.urls import path, include
 from .views import getUsersForTherapist, ChatMessages, ChatMessagesView, getMessagesForUser, UserTherapistView
-
+from .views import GetUserView
 # router = routers.DefaultRouter()
 # router.register('')
 
@@ -20,6 +20,7 @@ from .views import getUsersForTherapist, ChatMessages, ChatMessagesView, getMess
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
+# router.register('myusers', UserView)
 # router.register('books', BookViewSet)
 
 urlpatterns = [
@@ -39,5 +40,7 @@ urlpatterns = [
     path('tag', getTagsForDashboard.as_view()),
     path('user_therapist', UserTherapistView.as_view()),
     path('quotes', QuotesView.as_view()),
+    path('someuser',GetUserView.as_view()),
+    path('allusers',UserView.as_view())
     # path('user',GetUserByToken.as_view())
 ]

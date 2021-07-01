@@ -2,6 +2,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from pathlib import Path
 from collections import Counter
+
 def sentiment(sentence):
     sample_text = sentence
     text_tokens = word_tokenize(sample_text)

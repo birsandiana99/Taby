@@ -8,7 +8,7 @@ export default class Message extends Component {
     this.state = {
       chat: [],
       msg: "",
-      therapist: 0,
+      // therapist: 0,
     };
   }
 
@@ -19,17 +19,7 @@ export default class Message extends Component {
   };
   handleSend = () => {
     if (this.state.msg !== "") {
-      $.get(
-        "http://localhost:8000/api/therapist?user_id=" + localStorage.user_id
-      )
-        .then((res) => {
-          this.setState({therapist: res["id"]});
-          console.log("RES:::::",this.state.therapist);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      console.log("DFDFSDFSFDSFSDFDSF", this.state.therapist);
+      
       $.post("http://localhost:8000/api/chat_messages", {
         author_id: localStorage.user_id,
         text: this.state.msg,
@@ -48,20 +38,33 @@ export default class Message extends Component {
   };
 
   async componentDidMount() {
+    const therapistResp = await fetch(
+      "http://localhost:8000/api/therapist?user_id=" + localStorage.user_id
+    );
+    const dataTherapist = await therapistResp.json();
+    this.setState({therapist: dataTherapist["id"]});
+        // console.log("RES:::::",this.state.therapist);
+    console.log("DFDFSDFSFDSFSDFDSF", this.state.therapist);
+
+    this.setState({user_id: localStorage.getItem("user_id")});  
     const user_id = localStorage.getItem("user_id");
     const urlMessagesForUser =
-      "http://127.0.0.1:8000/api/chats_for_user?user_id=" + user_id;
+      "http://127.0.0.1:8000/api/chats_for_user?user=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
     const dataMessagesForUser = await responseMessagesForUser.json();
-    let dataMessages = [];
+    // let dataMessages = [];
     let ch = this.state.chat;
     // ch.push({from:'our',msag:this.state.msg});
     // ch.push({from:'cb',msag:res});
     for (const val of dataMessagesForUser) {
-      console.log("VAL::::", val);
-      if (val["author_id"] === user_id) {
+      console.log("now:",val)
+      console.log("VAL::::",  val["author_id"] ,  Number(this.state.user_id), val["author_id"] === Number(this.state.user_id));
+      if (val["author_id"] === Number(this.state.user_id)) {
+        console.log("USERID", val);
         ch.push({ from: "our", msag: val["text"] });
-      } else {
+      }
+      else{
+        // console.log("therapist:::", val)
         ch.push({ from: "cb", msag: val["text"] });
       }
       this.forceUpdate();
@@ -83,7 +86,7 @@ export default class Message extends Component {
         style={{ overflowY: "auto", height: "63vh" }}
       >
         {this.state.chat.map((msg) => {
-          if (msg.from == "cb") {
+          if (msg.from === "cb") {
             return (
               <div >
                 <div id="therapist-avatar"> </div>
@@ -95,6 +98,7 @@ export default class Message extends Component {
               </div>
             );
           } else {
+           
             return (
               <div>
               
@@ -106,6 +110,7 @@ export default class Message extends Component {
             );
           }
         })}
+
       </div>
       {/* <div style={{ height: "2vh" }}> */}
         <div className="inputSendContainer">

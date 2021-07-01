@@ -65,6 +65,17 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = MyUser.objects.all()
     serializer_class = UserSerializer
 
+class GetUserView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    def get(self, request):
+        
+        uid = request.GET.get('user_id')
+        print("AICIIIIIIIIIIIII", uid)
+        user = MyUser.objects.get(pk=uid)
+        print("olaaaaaaaaa", user)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
 class CustomObtainAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
@@ -147,6 +158,24 @@ class getUsersForTherapist(generics.ListAPIView):
         # return Response(user_list)
         return Response(serializer.data)
 
+
+class getTherapistForUser(generics.ListAPIView):
+    serializer_class = UserSerializer
+    def get(self, request):
+        # print(self.request.GET.get('therapist_id'))
+        uid = self.request.GET.get('therapist_id')
+        print("AAAAB",request.query_params['therapist_id'])
+        # uid = 13
+        user_list = []
+        users_for_therapist = UserTherapist.objects.filter(therapist_id=uid)
+        for user in users_for_therapist:
+            curr_user = MyUser.objects.filter(id = user.user_id)
+            user_list.append(curr_user[0])
+        serializer = UserSerializer(user_list, many=True)
+
+        # return Response(user_list)
+        return Response(serializer.data)
+
 class getTherapistForUser(generics.ListAPIView):
     serializer_class = UserSerializer
     def get(self, request):
@@ -181,10 +210,11 @@ class ChatMessagesView(generics.ListAPIView):
 class getMessagesForUser(generics.ListAPIView):
     serializer_class = ChatMessageSerializer
     def get(self, request):
-        uid = self.request.GET.get('user_id')
+        user_1 = self.request.GET.get('user')
+        # user_2 = self.request.GET.get('user_2')
         from django.db.models import Q
-        messages = ChatMessage.objects.filter(Q(author_id=uid) | Q(recipient_id=uid))
-        msg_list = list(messages)
+        messages = ChatMessage.objects.filter(Q(author_id=user_1) | Q(recipient_id=user_1))
+        msg_list = list(messages) 
         print("$#########,",msg_list)
         serializer = ChatMessageSerializer(msg_list, many=True)
         return Response(serializer.data)

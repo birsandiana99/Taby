@@ -30,7 +30,7 @@
     },
     {
       "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot!"],
+      "patterns": ["Thank you very much","Thank you for your help!","Thanks", "Thank you", "That's helpful", "Thanks a lot!"],
       "responses": [
         "Happy to help!",
         "Anytime! I'm here to help!",
@@ -78,6 +78,19 @@
       ]
     },
     {
+      "tag": "not good enough",
+      "patterns": [
+        "I feel like I'm not enough",
+        "I'm just not enough",
+        "I am not good at anything",
+        "I don't know anything"
+      ],
+      "responses": [
+        "Everyone is perfect in their own way, you have to understand that. You were, are and will always be enough!",
+        "What would make you say that? Everyone is valuable in their own way!"
+      ]
+    },
+    {
       "tag": "powerless",
       "patterns": [
         "I feel powerless",
@@ -107,7 +120,10 @@
       ],
       "responses": [
         "Take a few deep breaths. Can you think of anything that may have caused this emotion?",
-        "I am here for you and I want to know how I can help"
+        "I am here for you and I want to know how I can help", 
+        "Can you think of a reason for this anxiety?",
+        "Do you know where this feeling of distress and anxiety comes from?",
+        "Can you tell me a bit more about it? What do you think caused this anxiety?"
       ]
     },
     {
@@ -186,6 +202,7 @@
       [
         "I feel good today",
         "I had a wonderful time",
+        "I had a wonderful day",
         "I am happy",
         "I am ecstatic for this",
         "I feel very good recently",
@@ -369,6 +386,7 @@
       "patterns": 
       [
         "They always laugh at me",
+        "My classmates always laugh at me",
         "They said I was fat",
         "They made fun of me",
         "They stole my things",
@@ -427,9 +445,8 @@
         "I just cut myself"
       ],
       "responses": [
-        "If you don't have any urgent business that need to be attended you can feel free to take a day off every now and then, it's ok",
-        "Can you think of why you chose not to do anything today?",
-        "Was it because of some emotions you felt?"
+        "I am so sorry you felt like doing this! Please tell me why did you feel so much distress that you felt like self-harming?",
+        "I am so sorry you went through this! I promise you are not alone in this! I am here if you want to talk."
       ]
     },
     {
@@ -600,7 +617,10 @@
         "what's your favourite movie?"
       ],
       "responses": [
-        "I really liked "
+        "I really liked Inception",
+        "I really liked The Princess Bride",
+        "Have you seen Forest Gump? You should try it!",
+        "I love The Hangover movies! They're fun!"
       ]
     },
     {
@@ -709,6 +729,71 @@
       "responses": [
         "Thank you very much for saying this! I'm here just for you and your growth!",
         "Thank you for saying this! You're officially my best friend!!"
+      ]
+    },
+    {
+      "tag": "loveMusic",
+      "patterns": 
+      [
+        "I love music!",
+        "Yes, I like music",
+        "I listen to a lot of music",
+        "I like to sing",
+        "I love to sing"
+      ],
+      "responses": [
+        "Me too. Music helps when you feel tense or sad :-)",
+        "Great! Me too! We have something in common!"
+      ]
+    },
+    {
+      "tag": "hateMusic",
+      "patterns": 
+      [
+        "I don't really like music",
+        "I don't listen to music very often"
+      ],
+      "responses": [
+        "Oh. That's alright. What do you like to do then? Do you have any hobbies?"
+      ]
+    },
+    {
+      "tag": "hobbies",
+      "patterns": 
+      [
+        "I like skying",
+        "I like drawing",
+        "I like videogames",
+        "I love drawing",
+        "I love videogames"
+      ],
+      "responses": [
+        "That's really cool! I'm glad there are things that make you happy! Tell me more about it."
+      ]
+    },
+    {
+      "tag": "feelingBetter",
+      "patterns": 
+      [
+        "I am feeling a bit better!",
+        "I am feeling less sad now, after talking to you",
+        "I am feeling better now!"
+      ],
+      "responses": [
+        "I am happy you feel this way and grateful you let me be part of your journey to this happiness",
+        "I am very happy for you! I'm glad I was able to help"
+      ]
+    },
+    {
+      "tag": "dont wanna talk",
+      "patterns": 
+      [
+        "I don't wanna talk about it",
+        "No, sorry"
+      ],
+      "responses": [
+        "Ok! I respect your privacy! Is there anything else you want to talk about?",
+        "That's perfectly fine. Let's talk about something else then."
       ]
     }
   ]
