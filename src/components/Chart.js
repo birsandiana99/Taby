@@ -4,11 +4,9 @@ let messageData;
 const getDataFromAPI = () => {
   const user_id = localStorage.getItem("user_id");
   const url = "http://127.0.0.1:8000/api/messages?user_id=" + user_id;
-  // const params = {user_id  user_id};
 
   return (
     fetch(url, {
-      // user_id : user_id,
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -16,15 +14,12 @@ const getDataFromAPI = () => {
       .then((respData) => {
         let finalResp = [];
         for (const val of respData) {
-          // finalResp = [...finalResp, val["message"]]
           finalResp = finalResp + " " + val["message"];
         }
         messageData = finalResp;
-        // console.log(finalResp);
 
         return finalResp;
       })
-      // .then(respData => {return(respData)})
       .catch((error) => console.error(error))
   );
 };
@@ -76,54 +71,13 @@ export default class DashPage extends Component {
       counters: {},
       data: "",
     };
-    // console.log("PROPS home: ",props);
   }
-  // getDataFromAPI = () =>{
-  //   const user_id = localStorage.getItem("user_id");
-  //   console.log("AICI");
-  //   const url = 'http://127.0.0.1:8000/api/messages?user_id='+user_id;
-  //   // const params = {user_id  user_id};
 
-  //   return (fetch(url, {
-  //       // user_id : user_id,
-  //       method: 'GET',
-  //       headers: {'Content-Type': 'application/json'}
-  //     })
-  //     .then( data => data.json() )
-  //     .then(respData => {
-  //         let finalResp = []
-  //         for (const val of respData){
-  //             finalResp = [...finalResp, val["message"]]
-  //             // finalResp = finalResp + " " +val["message"];
-  //         }
-  //         messageData = finalResp;
-  //         console.log("AAAAAA",messageData);
-
-  //         return finalResp;
-  //     }).then(this.setState(() => {return {messages_from_API:messages_from_API +  finalResp}}))
-  //     // .then(respData => {return(respData)})
-  //     .catch( error => console.error(error)))
-  // }
-  // var = getDataFromAPI()
-
-  // var.then(res=>console.log(res))
-  // state = {
-  //     data: ""
-  // }
 
   render() {
     let mydata = getDataFromAPI();
     mydata.then((data) => console.log(data));
-    // my_data = getCountersFromApi().then(data=> data);
 
-    // console.log(my_data.then(d => {return d}));
-    // console.log("DSFSDfsdf",mycounts);
-    // let counter = getCountersFromApi(mydata[0]);
-    // counter.then(mydata => console.log("dsfdsfs",mydata));
-    // console.log(this.props.token) ;
-    // console.log("register");
-    // this.getDataFromAPI()
-    console.log("gggggg", this.state.messages_from_API);
     return localStorage.token ? (
       <div>
         <h2>HELLO</h2> <Pie data={datax}></Pie>

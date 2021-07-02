@@ -31,6 +31,7 @@ export default class DashboardWithProps extends Component {
     const recentMessages = [];
     let msg_list = [];
     let all_dates = [];
+    console.log("dataMessagesForUser",dataMessagesForUser);
     for (const val of dataMessagesForUser) {
       const today = new Date();
       const msg_date = new Date(val["msg_date"]);
@@ -53,14 +54,15 @@ export default class DashboardWithProps extends Component {
         msg_list = [...msg_list, val["message"]];
       }
     }
-
+    console.log("AIIICI:::::",all_dates);
     const today = new Date();
     let rec_mes = [];
-    for (const some_date of all_dates.slice(2)) {
+    for (const some_date of all_dates.slice(1)) {
         if(recentMessages[some_date]){
             rec_mes = [...rec_mes, recentMessages[some_date]];
         }
     }
+    console.log("RECMES", rec_mes);
     let messages_1 = rec_mes[0];
     let messages_2 = rec_mes[1];
     if(messages_1){
@@ -87,7 +89,7 @@ export default class DashboardWithProps extends Component {
         {
           label:
             "Feelings intensity for " +
-            all_dates[0]+
+            all_dates[1]+
             "." +
             (today.getMonth() + 1),
           data: Object.values(tagsDict_1).slice(0, 5),
@@ -146,7 +148,7 @@ export default class DashboardWithProps extends Component {
         {
           label:
             "Feelings intensity for " +
-            all_dates[1]+
+            all_dates[2]+
             "." +
             (today.getMonth() + 1),
           data: Object.values(tagsDict_2).slice(0, 5),
@@ -313,7 +315,6 @@ export default class DashboardWithProps extends Component {
         options: options
       });
     }
-    console.log("DATA HERE", datax);
   }
   render() {
     return (

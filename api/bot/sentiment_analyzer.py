@@ -8,7 +8,6 @@ def sentiment(sentence):
     text_tokens = word_tokenize(sample_text)
 
     tokens_without_sw = [word for word in text_tokens if not word in stopwords.words('english')]
-    print (tokens_without_sw)
     emotion_list = []
     emotions = []
     script_location = Path(__file__).absolute().parent
@@ -17,14 +16,11 @@ def sentiment(sentence):
         for line in file:
             clear_line = line.replace("\n",'').replace(",",'').replace("'",'').strip()
             word, emotion = clear_line.split(':')
-            # print(word) 
             emotions.append({word: emotion})
             if word in tokens_without_sw:
                 emotion_list.append(emotion)
     w = Counter(emotion_list)
     return w
-    # print(w)
-    # print(w.most_common(1)[0][0])
 
 def polarity_analyzer(text):
     from nltk.sentiment.vader import SentimentIntensityAnalyzer

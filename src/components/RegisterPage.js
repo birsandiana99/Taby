@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import swal from "sweetalert";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide(props) {
+  const history = useHistory();
   const classes = useStyles();
   const [credentials, setCredentials] = useState({
     username: "",
@@ -91,8 +93,6 @@ export default function SignInSide(props) {
 
   function register(event) {
     
-    // console.log(credentials["type_of_user"]);
-    // this.setState({type_of_user:'client'});
 
     const fn = credentials["first_name"];
     const ln = credentials["last_name"];
@@ -102,28 +102,30 @@ export default function SignInSide(props) {
     const age = credentials["age"];
     const username = credentials["username"];
 
-
+    let validator = 1;
     if(isNaN(age) || age<13 || age>99){
       swal("Age must be a number between 13 and 99");
+      validator = 0;
     }
     if ( pw1!==pw2) {
       swal("Passwords don't match!");
+      validator = 0;
     }
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(!re.test(email)){
       swal("Email is not correct");
+      validator = 0;
     }
     if(username === ''){
       swal("Username must not be null");
+      validator = 0;
     }
     if(fn === '' || ln === ''){
       swal("Name must not be null");
+      validator = 0;
     }
 
-    
-
-
-
+    if(validator === 1){
     fetch("http://127.0.0.1:8000/api/users/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -131,26 +133,26 @@ export default function SignInSide(props) {
     })
       .then((data) => data.json())
       .catch((error) => console.error(error));
-    console.log("register");
+      
+      history.push('/login');}
   }
 
   function inputChanged(event) {
     const cred = credentials;
     cred[event.target.name] = event.target.value;
     setCredentials(cred);
-    console.log(credentials);
   }
 
   function getUserType(event){
-    console.log("SDDFSFS", event.target.value);
     const cred = credentials;
+    console.log("@@@@@",event.target.value);
     cred["type_of_user"] = event.target.value;
     setCredentials(cred);
   }
 
 
   return (
-    <Grid container component="main" className={"register-container container "+classes.root} style={{background:"inherit"}}>
+    <Grid container component="main" className={"register-container container "+classes.root} style={{background:"inherit", marginBottom:"65px"}}>
       <CssBaseline />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>

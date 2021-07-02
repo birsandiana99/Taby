@@ -25,11 +25,9 @@ export default class DonutChart extends Component {
     const responsePolarity = await fetch(urlPolarity);
     const dataPolarity = await responsePolarity.json();
 
-    // console.log("POLARITY:::: ", dataPolarity);
     let compound = dataPolarity["compound"];
     delete dataPolarity["compound"];
     let labels = Object.keys(dataPolarity);
-    console.log("POLARITY compound:::: ", compound);
 
     let datax = {
       labels: labels,

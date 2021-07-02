@@ -24,10 +24,8 @@ export default class DashPage extends Component {
       "http://127.0.0.1:8000/api/counter?obj=" + dataMessages;
     const responseCounterForMessages = await fetch(urlCounterForMessages);
     const dataCounterForMessages = await responseCounterForMessages.json();
-    console.log(dataCounterForMessages);
 
     let labels = Object.keys(dataCounterForMessages);
-    console.log(labels);
 
     let datax = {
       labels: labels.slice(0, 5),
@@ -55,14 +53,11 @@ export default class DashPage extends Component {
         },
       ],
     };
-    // console.log(dataMessages);
-    // console.log(dataCounterForMessages);
 
     const urlPolarity =
       "http://127.0.0.1:8000/api/polarity?obj=" + dataMessages;
     const responsePolarity = await fetch(urlPolarity);
     const dataPolarity = await responsePolarity.json();
-    // console.log("POLARITY:::: ", dataPolarity);
 
     this.setState({
       dataMessagesForUser: dataMessages,

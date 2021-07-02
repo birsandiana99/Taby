@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 import { Pie } from "react-chartjs-2";
-// const ChartWithProps = (props) => {
-//     // const params = useParams();
-//     console.log(props);
-//     const userID = props.match.params.user_id;
-//     console.log("ASDDDDDDDD",userID);
-//     return <div>dfgdfgfd</div>;
-// }
-// export default withRouter(ChartWithProps);
 
-// const appDiv = document.getElementById("dashboard");
-// render(<ChartWithProps name="dash"/>, appDiv);
 export default class ChartWithProps extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +13,8 @@ export default class ChartWithProps extends Component {
   }
 
   async componentDidMount() {
-    // const user_id = this.props.user_id;
-    console.log("PROPS:", this.props);
     const user_id = this.props.match.params.user_id;
-    console.log("USERID", user_id);
-    // console.log("DFGDGSF ", user_id );
+
     const urlMessagesForUser =
       "http://127.0.0.1:8000/api/messages?user_id=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
@@ -42,10 +29,8 @@ export default class ChartWithProps extends Component {
       "http://127.0.0.1:8000/api/counter?obj=" + dataMessages;
     const responseCounterForMessages = await fetch(urlCounterForMessages);
     const dataCounterForMessages = await responseCounterForMessages.json();
-    console.log(dataCounterForMessages);
 
     let labels = Object.keys(dataCounterForMessages);
-    console.log(labels);
 
     let datax = {
       labels: labels.slice(0, 5),
@@ -71,8 +56,6 @@ export default class ChartWithProps extends Component {
         },
       ],
     };
-    console.log(dataMessages);
-    console.log(dataCounterForMessages);
     this.setState({
       dataMessagesForUser: dataMessages,
       dataCounterForMessages: dataCounterForMessages,
@@ -81,7 +64,6 @@ export default class ChartWithProps extends Component {
     });
   }
   render() {
-    console.log("GOOOd");
     return (
       <div>
         {this.state.loading ? (

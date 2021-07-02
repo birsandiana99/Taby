@@ -51,7 +51,6 @@ const Navbar = () => {
   const classes = useStyles();
   const [auth = 0, setAuth] = useState([]);
   const logOut = () => {
-    console.log("HERE");
     localStorage.removeItem("token");
     localStorage.removeItem("user_id");
     localStorage.removeItem("user_type");

@@ -70,7 +70,6 @@ export default function SignInSide(props) {
   const [credentials, setCredentials] = useState({});
 
   function login(event) {
-    console.log("CREDS:",credentials);
     fetch("http://127.0.0.1:8000/api/auth/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -97,7 +96,6 @@ export default function SignInSide(props) {
   }
 
   function inputChanged(event) {
-    console.log(event.target.value);
     const cred = credentials;
     cred[event.target.name] = event.target.value;
     setCredentials(cred);

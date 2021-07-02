@@ -18,26 +18,12 @@ export default class ClientPage extends Component {
 }
 
   async componentDidMount() {
-      // const {match: {params}} = this.props;
-      // let id = params.user_id;
-      // console.log("ID ", id);
-      console.log("PROPS:",this.props);
       if(this.props.user_id){
         this.setState({user_id : this.props.user_id});
        }
        else{
         this.setState({user_id: this.props.match.params.user_id});
      }
-       console.log("------------",this.state.user_id);
-
-      //  $.get("http://localhost:8000/api/therapist?user_id=" + this.state.user_id)
-      //  .then((res) => {
-      //    this.setState({ therapist: res["id"] });
-      //  })
-      //  .catch((err) => {
-      //    console.log(err);
-      //  });
-      //  console.log("THERAPIST",this.state.therapist);
        
   }
   render() {

@@ -14,7 +14,7 @@ const Layout = (props) => {
   return (
     <div>
       <Navbar></Navbar>
-      <div style={{ padding: 24, minHeight: 280, margin:"0 20px" }}>
+      <div style={{ padding: 24, minHeight: "75vh", margin:"0 20px" }}>
         {props.children}
       </div>
       <Footer></Footer>

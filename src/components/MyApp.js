@@ -41,7 +41,6 @@ export default class MyApp extends Component {
     else{
       return 0;
     }
-    // console.log("token:: " , this.state.token);
   };
 
   render() {

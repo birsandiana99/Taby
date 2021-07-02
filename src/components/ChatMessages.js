@@ -13,9 +13,7 @@ export default class Message extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({ msg: e.target.value });
-    // console.log(this.state.chat)
   };
   handleSend = () => {
     if (this.state.msg !== "") {
@@ -43,8 +41,6 @@ export default class Message extends Component {
     );
     const dataTherapist = await therapistResp.json();
     this.setState({therapist: dataTherapist["id"]});
-        // console.log("RES:::::",this.state.therapist);
-    console.log("DFDFSDFSFDSFSDFDSF", this.state.therapist);
 
     this.setState({user_id: localStorage.getItem("user_id")});  
     const user_id = localStorage.getItem("user_id");
@@ -52,19 +48,13 @@ export default class Message extends Component {
       "http://127.0.0.1:8000/api/chats_for_user?user=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
     const dataMessagesForUser = await responseMessagesForUser.json();
-    // let dataMessages = [];
+    
     let ch = this.state.chat;
-    // ch.push({from:'our',msag:this.state.msg});
-    // ch.push({from:'cb',msag:res});
     for (const val of dataMessagesForUser) {
-      console.log("now:",val)
-      console.log("VAL::::",  val["author_id"] ,  Number(this.state.user_id), val["author_id"] === Number(this.state.user_id));
       if (val["author_id"] === Number(this.state.user_id)) {
-        console.log("USERID", val);
         ch.push({ from: "our", msag: val["text"] });
       }
       else{
-        // console.log("therapist:::", val)
         ch.push({ from: "cb", msag: val["text"] });
       }
       this.forceUpdate();
@@ -72,7 +62,6 @@ export default class Message extends Component {
   }
   render() {
     if (this.props.user_id === "") {
-      console.log("not logged in");
       return (
         <div>
           <UnauthorizedPage></UnauthorizedPage>

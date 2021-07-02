@@ -34,13 +34,10 @@ export default class TherapistPage extends Component {
       datesForJoining[val["username"]] = val["date_joined"];
     }
 
-    console.log(datesForJoining);
-    console.log("==========", raw_data);
 
-    let date = new Date(raw_data[0]["last_login"]);
-    console.log("AICI",date.getMonth());
+    //let date = new Date(raw_data[0]["last_login"]);
 
-    console.log(dataPatientIDs);
+
     this.setState({
       raw_data: raw_data,
       dataPatients: dataPatients,

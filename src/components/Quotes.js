@@ -31,7 +31,6 @@ export default class Quotes extends Component {
     });
   }
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({ quote: e.target.value });
   };
   displayAddQuote = () =>{

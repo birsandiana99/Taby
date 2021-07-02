@@ -36,8 +36,6 @@ export default class OverviewChart extends Component {
     }
 
 
-  
-      console.log("MSG LIST", msg_list);
       let messages = [];
       let tags = [];
       let tagsDict = {};
@@ -55,7 +53,6 @@ export default class OverviewChart extends Component {
         }
         messages = [...messages, value];
       }
-      console.log("TAGSSSS", tagsDict);
       let labels = Object.keys(tagsDict);
       
       const datax = {
@@ -90,7 +87,7 @@ export default class OverviewChart extends Component {
           },
         }}
       };
-      console.log("DATAX", datax); 
+       
       const options = {
         legend: {
           fontColor: "white",
@@ -111,7 +108,6 @@ export default class OverviewChart extends Component {
           options: options
         });
       }
-      console.log("STATE", this.state.data);
   }
   render() {
     return (

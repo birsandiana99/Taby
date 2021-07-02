@@ -12,25 +12,20 @@ export default class ProgressBar extends Component {
   }
 
   async componentDidMount() {
-    // const user_id = this.props.user_id;
-    // const msg_list =  JSON.parse(localStorage.getItem("user_messages"));
     const user_id = localStorage.getItem("user_id");
-    console.log("AHAAAAAAAAAAAAAAAAAAAAAAA");
+
     const urlMessagesForUser =
       "http://127.0.0.1:8000/api/messages?user_id=" + user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
     const dataMessagesForUser = await responseMessagesForUser.json();
-    console.log("RAW", dataMessagesForUser);
+
     const recentMessages = [];
     let msg_list = [];
     let all_dates = [];
     for (const val of dataMessagesForUser) {
-      // console.log("DATEEEEEEEEEEEEEE: ", Date(val["msg_data"]));
-      // console.log("DATEEEEEEEEEEEEEE222222: ", new Date());
       const today = new Date();
       const msg_date = new Date(val["msg_date"]);
       if (msg_date != null) {
-        console.log("HERE", msg_date.getDate());
 
         if (!all_dates.includes(msg_date.getDate())) {
           recentMessages[msg_date.getDate()] = [val["message"]];
@@ -50,17 +45,6 @@ export default class ProgressBar extends Component {
         msg_list = [...msg_list, val["message"]];
       }
     }
-    console.log("UUUUUUUUUU", all_dates);
-    console.log("UUUUUUUUUU2", recentMessages);
-    // let dates = Object.keys(recentMessages);
-    // const today = new Date();
-    // for(const some_date of all_dates){
-    //   const date = new Date(some_date);
-    //     if(date.getDate() === today.getDate())
-    //     {
-    //         console.log("!!!!!!!!!!!!!!!!!!!",recentMessages[date]);
-    //     }
-    // }
 
     let dates = Object.keys(all_dates);
     const today = new Date();
@@ -71,21 +55,16 @@ export default class ProgressBar extends Component {
     for (const some_date of all_dates) {
       if (some_date === today.getDate() - 2) {
         messages_1 = recentMessages[some_date];
-        // console.log("!!!!!!!!!!!!!!!!!!!",recentMessages[some_date]);
       }
       if (some_date === today.getDate() - 3) {
         messages_2 = recentMessages[some_date];
-        // console.log("!!!!!!!!!!!!!!!!!!!",recentMessages[some_date]);
       }
     }
-    console.log("messages1:", messages_1);
-    console.log("messages2:", messages_2);
+
 
     let tags_1 = [];
     let tagsDict_1 = {};
-    // console.log("=========",msg_list);
     for (const value of messages_1) {
-      console.log("111111111", value);
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
@@ -99,8 +78,6 @@ export default class ProgressBar extends Component {
       }
     }
 
-    console.log("TAGSDICT1", tagsDict_1);
-    console.log("TODAY", today, today.getMonth());
     let labels_1 = Object.keys(tagsDict_1);
     const datax_1 = {
       labels: labels_1.slice(0, 5),
@@ -135,9 +112,7 @@ export default class ProgressBar extends Component {
 
     let tags_2 = [];
     let tagsDict_2 = {};
-    // console.log("=========",msg_list);
     for (const value of messages_2) {
-      // console.log(val);
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
@@ -151,7 +126,6 @@ export default class ProgressBar extends Component {
       }
     }
 
-    console.log("TAGSDICT2", tagsDict_2);
     let labels_2 = Object.keys(tagsDict_2);
     const datax_2 = {
       labels: labels_2.slice(0, 5),
@@ -184,15 +158,12 @@ export default class ProgressBar extends Component {
       ],
     };
 
-    console.log(datax_1);
     this.setState({ data_1: datax_1, data_2: datax_2 });
 
     let messages = [];
     let tags = [];
     let tagsDict = {};
-    // console.log("=========",msg_list);
     for (const value of msg_list) {
-      // console.log(val);
       const urlTagsForUser = "http://127.0.0.1:8000/api/tag?msg=" + value;
       const responseTagsForUser = await fetch(urlTagsForUser);
       const dataTagForUser = await responseTagsForUser.json();
@@ -211,10 +182,8 @@ export default class ProgressBar extends Component {
       "http://127.0.0.1:8000/api/counter?obj=" + messages;
     const responseCounterForMessages = await fetch(urlCounterForMessages);
     const dataCounterForMessages = await responseCounterForMessages.json();
-    console.log(dataCounterForMessages);
 
     let labelsx = Object.keys(dataCounterForMessages);
-    // console.log(labelsx);
 
     let datax2 = {
       labels: labelsx.slice(0, 5),

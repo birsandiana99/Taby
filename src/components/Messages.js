@@ -14,7 +14,6 @@ export default class Messages extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({ msg: e.target.value });
   };
   handleSend = () => {
@@ -37,8 +36,6 @@ export default class Messages extends Component {
   };
 
   async componentDidMount() {
-    console.log("PROPS:", this.props.match.params.user2);
-    console.log("USER222",this.state.user_id);
     const urlMessagesForUser =
       "http://127.0.0.1:8000/api/chats_for_user?user="+this.state.user_id;
     const responseMessagesForUser = await fetch(urlMessagesForUser);
@@ -47,24 +44,18 @@ export default class Messages extends Component {
     
     this.setState({ user2: this.props.match.params.user2 });
     
-    console.log("USER2",this.state.user2);
     for (const val of dataMessagesForUser) {
-      console.log("now:",val)
-      console.log("VAL::::",  val["author_id"] ,  Number(this.state.user_id), val["author_id"] === Number(this.state.user_id));
       if (val["author_id"] === Number(this.state.user_id)) {
-        console.log("USERID", val);
         ch.push({ from: "our", msag: val["text"] });
       }
       else{
-        // console.log("therapist:::", val)
         ch.push({ from: "cb", msag: val["text"] });
       }
       this.forceUpdate();
     }
   }
   render() {
-    if (this.props.user_id == "") {
-      console.log("not logged in");
+    if (this.props.user_id === "") {
       return (
         <div>
           <UnauthorizedPage></UnauthorizedPage>
@@ -102,7 +93,6 @@ export default class Messages extends Component {
             }
           })}
         </div>
-        {/* <div style={{ height: "2vh" }}> */}
           <div className="inputSendContainer">
           <input
             type="text"
@@ -120,7 +110,6 @@ export default class Messages extends Component {
           >
             Send
           </button>
-          {/* </div> */}
         </div>
       </div>
     );

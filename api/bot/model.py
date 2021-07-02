@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-
+# Neural Network Model, feed forward neural network with 3 layers
 class NeuralNet(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
         super(NeuralNet, self).__init__()

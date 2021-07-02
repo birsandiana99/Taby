@@ -5,7 +5,10 @@ export default class UserProfile extends Component {
   state = {
     user: {},
   };
-
+  getMyDate= (mydate) => {
+    let date = new Date(mydate);
+    return date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear() + ' ' +date.getHours()+":"+date.getMinutes();
+  }  
   async componentDidMount() {
     const user_id = localStorage.getItem("user_id");
     const urlUsers =
@@ -13,7 +16,6 @@ export default class UserProfile extends Component {
     const resp = await fetch(urlUsers);
     const data = await resp.json();
     this.setState({user: data});
-    console.log("RRRRRRRRRRR",data);
 
 
     const therapist=await fetch(
@@ -21,34 +23,33 @@ export default class UserProfile extends Component {
     );
     const therapistForUser = await therapist.json();
     this.setState({therapist: therapistForUser});
-    console.log("RRRRRRRRRRR",therapistForUser);
 
   }
 
   
 
-  render() {
-    console.log(localStorage.getItem("user_type"));
-    
+  render() {    
     return (
       <div>
-        <h1>Hello, {this.state.user.first_name}</h1>
-        <h2>Here is some of your relevant information</h2>
-        <div>
-          <label> Name: {this.state.user.first_name} + {this.state.user.last_name}</label>
+        <h2>Hello, {this.state.user.first_name}</h2>
+        <h3>Here is your relevant information</h3>
+        <div className="patientCard">
+            <div>
+          <label className="controlLabel"> Name: </label>  <label> {this.state.user.first_name} {this.state.user.last_name}</label>
           <br/>
-          <label> Email: {this.state.user.email}</label>
+          <label className="controlLabel"> Email: </label> <label> {this.state.user.email}</label>
           <br/>
-          <label> Age: {this.state.user.age}</label>
+          <label className="controlLabel"> Age: </label> <label> {this.state.user.age}</label>
           <br/>
-          <label> Type of user: {this.state.user.type_of_user}</label>
+          <label className="controlLabel"> Type of user: </label> <label> {this.state.user.type_of_user}</label>
           <br/>
-          <label> Date Joined: {this.state.user.date_joined}</label>
+          <label className="controlLabel"> Date Joined: </label> <label> {this.getMyDate(this.state.user.date_joined)}</label>
           <br/>
           {this.state.user.type_of_user === "client" ? 
-            <label> {this.state.therapist ? <label>Your therapist: {this.state.therapist.first_name + " " + this.state.therapist.last_name} </label>: "No therapist assigned for this user" }</label>
+            <div> {this.state.therapist ? <div><label className="controlLabel"> Your therapist: </label> <label>{this.state.therapist.first_name + " " + this.state.therapist.last_name} </label></div>: "No therapist assigned for this user" }</div>
             : <></>
           }
+          </div>
         </div>
       </div>
     );

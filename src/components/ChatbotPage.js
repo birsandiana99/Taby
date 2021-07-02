@@ -12,9 +12,7 @@ export default class ChatbotPage extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({ msg: e.target.value });
-    // console.log(this.state.chat)
   };
   handleSend = () => {
     if (this.state.msg != "") {
@@ -57,7 +55,6 @@ export default class ChatbotPage extends Component {
 
   render() {
     if (this.props.user_id == "") {
-      console.log("not logged in");
       return (
         <div>
           <UnauthorizedPage></UnauthorizedPage>
